@@ -1,0 +1,569 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import { siteConfig } from '../config/site';
+import { byCategory, categoryLabel, type Category } from '../data/services';
+
+const wa = `https://wa.me/${siteConfig.contact.whatsapp.primary.number}?text=${encodeURIComponent('Halo Trans Express, saya tertarik menggunakan layanan jasa import untuk bisnis saya. Boleh minta info lebih lanjut?')}`;
+const groups: Category[] = ['pengiriman', 'titip-beli', 'pembayaran'];
+
+const steps = [
+  { t: 'Transaksi Pembelian', d: 'Belanja di supplier pilihan Anda dan gunakan alamat gudang China serta kode marking khusus dari kami.' },
+  { t: 'Kirim ke Gudang China', d: 'Supplier mengirim pesanan ke gudang kami. Anda cukup melampirkan invoice dan rincian barang.' },
+  { t: 'Proses Pengiriman', d: 'Barang diberangkatkan ke Indonesia. Kami mengurus seluruh dokumen dan regulasi import untuk Anda.' },
+  { t: 'Tiba di Jakarta', d: 'Setibanya di gudang Jakarta, kami akan menginformasikan kedatangan barang beserta tagihan ongkos kirim.' },
+  { t: 'Bayar & Terima Beres', d: 'Selesaikan pembayaran, dan pesanan akan langsung diantar dengan aman ke alamat Anda.' },
+];
+
+const reasons = [
+  { t: 'Terima Beres.', d: 'Fokus berjualan, biarkan kami yang mengurus seluruh proses pengiriman kargo Anda.' },
+  { t: 'Transparansi', d: 'Tidak ada biaya siluman. Semua estimasi ongkos kirim disepakati di awal.' },
+  { t: '100% Aman', d: 'Keamanan barang Anda adalah prioritas kami. Bebas resiko dan pengiriman lancar sampai tujuan.' },
+];
+
+const faqs = [
+  { q: 'Apakah Trans Express melayani import untuk perusahaan (B2B)?', a: 'Sangat melayani. Kami menangani kargo besar (FCL/LCL) dengan sangat profesional.' },
+  { q: 'Bagaimana sistem pembayaran ke supplier di China?', a: 'Layanan Titip Beli kami akan menalangi pembayaran. Jika sudah punya supplier, kami sedia Transfer RMB.' },
+  { q: 'Berapa lama estimasi waktu pengiriman sampai Indonesia?', a: 'Udara 5-8 hari kerja. Laut (LCL/FCL) rata-rata 3-4 minggu bergantung pada jadwal kapal.' },
+  { q: 'Apakah biaya yang ditawarkan sudah All-In?', a: 'Ya, mayoritas layanan kami adalah All-In yang mencakup ongkos kirim Internasional dan pajak masuk.' },
+];
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<BaseLayout
+  title="Jasa Import China ke Indonesia Cepat & Aman | Forwarder Import"
+  description="Fastindo Cargo: Jasa forwarding dan jasa import China ke Indonesia terpercaya. Layanan door to door, proses clearance, via laut dan udara. Import dari 1688, Alibaba, Taobao. Tanpa minimum pembelian. Konsultasi gratis!"
+  keywords="jasa import china, forwarder china indonesia, jasa import terpercaya, cargo laut china indonesia, importir barang china, b2b import china"
+  path="/"
+  preload="/images/hero-cargo-ship.webp"
+  jsonld={faqSchema}
+>
+  <!-- ââ INSET HERO (New Light Style) âââââââââââââââââââââââââââââââââââ -->
+  <section class="pt-6 md:pt-10 pb-16 bg-paper px-4 md:px-8">
+    <div class="max-w-[1360px] mx-auto">
+      
+      <!-- Top Section: 2 Columns -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-16 items-start mb-10 md:mb-16">
+        
+        <!-- Left: Heading -->
+        <div class="fade-up text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange/10 text-orange text-xs md:text-sm font-bold tracking-wider mb-6 uppercase">
+            <span class="w-2 h-2 rounded-full bg-orange animate-pulse"></span>
+            100% Cepat & Aman
+          </div>
+          <h1 class="font-display font-black leading-[1.05] text-ink flex flex-col items-start">
+            <span class="text-[clamp(2.5rem,8vw,5.6rem)] tracking-tight lg:whitespace-nowrap">Forwarder Import</span>
+            <span class="text-[clamp(2.7rem,8.5vw,6rem)] tracking-normal text-orange lg:whitespace-nowrap mt-1">China Indonesia</span>
+          </h1>
+        </div>
+
+        <!-- Right: Text & Buttons -->
+        <div class="fade-up d1 flex flex-col items-start mt-4 lg:mt-[72px]">
+          <p class="text-muted text-base md:text-lg font-medium leading-relaxed max-w-xl mb-6 md:mb-8">
+            Trans Express membantu impor barang dari China ke Indonesia, mulai dari pembelian, pembayaran supplier, pengiriman door-to-door ALL-IN, hingga barang tiba dengan aman di alamat Anda.
+          </p>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href={wa} target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg shadow-xl shadow-orange/30 group">
+              Konsultasi Gratis
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/layanan" class="inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-line text-ink font-bold hover:border-orange hover:text-orange transition-colors">
+              Layanan Kami
+            </a>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Bottom Section: Bento Grid Images -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 w-full fade-up d2">
+        <!-- Tall left card (Ship) -->
+        <div class="col-span-1 md:col-span-1 md:row-span-2 relative rounded-[16px] md:rounded-[24px] overflow-hidden aspect-square md:aspect-auto md:h-full group bg-sand border border-line shadow-sm">
+          <img src="/images/hero-cargo-ship.webp" alt="Kapal kargo laut besar berlayar melintasi samudra" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" fetchpriority="high" decoding="async" width="400" height="800" />
+        </div>
+        
+        <!-- Wide top right card (Plane) -->
+        <div class="col-span-1 md:col-span-2 relative rounded-[16px] md:rounded-[24px] overflow-hidden aspect-square md:aspect-auto md:h-[200px] lg:h-[240px] group bg-sand border border-line shadow-sm">
+          <img src="/images/hero-cargo-plane.webp" alt="Pesawat pengiriman kargo udara express internasional" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" fetchpriority="high" decoding="async" width="800" height="400" />
+        </div>
+
+        <!-- Bottom right card 1 (Container) -->
+        <div class="col-span-1 md:col-span-1 relative rounded-[16px] md:rounded-[24px] overflow-hidden aspect-square md:aspect-auto md:h-[140px] lg:h-[180px] group bg-sand border border-line shadow-sm">
+          <img src="/images/hero-containers.webp" alt="Tumpukan kontainer besi untuk pengiriman barang di pelabuhan" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" fetchpriority="high" decoding="async" width="400" height="400" />
+        </div>
+
+        <!-- Bottom right card 2 (Warehouse) -->
+        <div class="col-span-1 md:col-span-1 relative rounded-[16px] md:rounded-[24px] overflow-hidden aspect-square md:aspect-auto md:h-[140px] lg:h-[180px] group bg-sand border border-line shadow-sm">
+          <img src="/images/hero-warehouse.webp" alt="Fasilitas operasional gudang logistik modern" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" fetchpriority="high" decoding="async" width="400" height="400" />
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ── LOGO MARQUEE / TICKER ──────────────────────────────────────── -->
+  <section class="py-8 bg-paper border-b border-line-2/40 overflow-hidden">
+    <div class="max-w-[1360px] mx-auto px-4">
+      <p class="text-center font-display text-[0.7rem] font-bold uppercase tracking-[0.2em] text-muted/80 mb-6">Layanan Import Barang dari Marketplace China</p>
+      <div class="marquee-container">
+        <div class="marquee-content">
+          <!-- Taobao -->
+          <img src="/images/logo-taobao.png" alt="Logo Taobao Marketplace" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- 1688 -->
+          <img src="/images/logo-1688.png" alt="Logo 1688 Wholesale" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- Alibaba -->
+          <img src="/images/logo-alibaba.png" alt="Logo Alibaba B2B" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- Tmall -->
+          <div class="flex items-center gap-2 text-ink-2/40 font-display font-extrabold text-lg md:text-xl tracking-tight">
+            <span>Tmall <span class="font-normal text-sm opacity-60">天猫</span></span>
+          </div>
+          <!-- JD -->
+          <img src="/images/logo-jdcom.png" alt="Logo JD.com" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- AliExpress -->
+          <img src="/images/logo-aliexpress.png" alt="Logo AliExpress" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- Made in China -->
+          <div class="flex items-center gap-2 text-ink-2/40 font-display font-extrabold text-md md:text-lg tracking-tight">
+            <span class="border-2 border-ink-2/20 px-1.5 py-0.2 rounded text-[10px] font-bold">MIC</span>
+            <span>Made-in-China</span>
+          </div>
+          
+          <!-- Duplicate for infinite loop -->
+          <!-- Taobao -->
+          <img src="/images/logo-taobao.png" alt="Logo Taobao Marketplace" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- 1688 -->
+          <img src="/images/logo-1688.png" alt="Logo 1688 Wholesale" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- Alibaba -->
+          <img src="/images/logo-alibaba.png" alt="Logo Alibaba B2B" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- Tmall -->
+          <div class="flex items-center gap-2 text-ink-2/40 font-display font-extrabold text-lg md:text-xl tracking-tight">
+            <span>Tmall <span class="font-normal text-sm opacity-60">天猫</span></span>
+          </div>
+          <!-- JD -->
+          <img src="/images/logo-jdcom.png" alt="Logo JD.com" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- AliExpress -->
+          <img src="/images/logo-aliexpress.png" alt="Logo AliExpress" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
+          <!-- Made in China -->
+          <div class="flex items-center gap-2 text-ink-2/40 font-display font-extrabold text-md md:text-lg tracking-tight">
+            <span class="border-2 border-ink-2/20 px-1.5 py-0.2 rounded text-[10px] font-bold">MIC</span>
+            <span>Made-in-China</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ BENTO SECTION ââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+  <section class="section-sm bg-sand">
+    <div class="shell">
+      <!-- Top Row: Heading + Small Card -->
+      <div class="flex flex-col lg:flex-row items-end justify-between gap-8 mb-8 fade-up">
+        <div class="max-w-xl">
+          <h2 class="h-xl balance">Mengapa Memilih Jasa Impor China <span class="text-orange">Trans Express?</span></h2>
+        </div>
+        <div class="panel p-5 flex items-center gap-4 bg-white max-w-sm shrink-0">
+          <div class="w-12 h-12 rounded-full bg-orange/10 flex items-center justify-center shrink-0">
+            <svg class="text-orange" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="text-[0.85rem] text-muted leading-snug">Dari supplier di China hingga barang tiba di alamat Anda.</p>
+        </div>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Box 1: Small CTA -->
+        <div class="panel p-8 bg-white flex flex-col justify-between fade-up d1">
+          <div>
+            <div class="w-16 h-16 rounded-2xl bg-sand flex items-center justify-center mb-6">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-orange)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-xl mb-2">Harga Transparan</h3>
+            <p class="text-muted text-sm">Estimasi jelas tanpa biaya tersembunyi.</p>
+          </div>
+          <a href="/layanan" class="btn btn--light btn--sm mt-6 w-full group">
+            Cek Estimasi Biaya
+          </a>
+        </div>
+
+        <!-- Box 2: Main Image Gallery style -->
+        <div class="panel md:col-span-2 lg:col-span-2 relative min-h-[300px] fade-up d2 group overflow-hidden">
+          <picture>
+            <img src="/images/service-sea-fcl.webp" width="400" height="300" loading="lazy" decoding="async" alt="Proses muat barang kontainer kargo laut FCL" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          </picture>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+            <h3 class="text-white font-display font-bold text-2xl">Kargo Laut FCL & LCL</h3>
+            <a href="/layanan/kargo-laut-fcl" aria-label="Lihat layanan Kargo Laut FCL" class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-orange transition-colors">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Box 3: Feature Info -->
+        <div class="panel p-8 bg-white flex flex-col justify-center fade-up d3">
+          <h3 class="font-display font-bold text-2xl mb-4">Pengiriman Aman & Tepat Waktu</h3>
+          <p class="text-muted text-[0.95rem] mb-6">Pengiriman terpercaya dengan proses yang terpantau.</p>
+          <a href="/layanan" class="text-ink font-bold hover:text-orange transition-colors text-sm uppercase tracking-wider flex items-center gap-2">
+            Layanan Kami <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ STATS SECTION ââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+  <section class="py-12 md:py-16 bg-ink text-white relative overflow-hidden">
+    <span class="orbit" style="width:360px;height:360px;top:-180px;left:-100px;opacity:.25;" aria-hidden="true"></span>
+    <span class="orbit" style="width:480px;height:480px;bottom:-240px;right:-120px;opacity:.15;" aria-hidden="true"></span>
+    <div class="shell relative z-10">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 text-center divide-y-0 lg:divide-y-0 lg:divide-x border-white/10">
+        <!-- Stat 1 -->
+        <div class="px-4">
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-orange tracking-tight mb-2">10.000+</p>
+          <p class="text-xs md:text-sm uppercase tracking-widest text-white/70 font-bold">Pengiriman Sukses</p>
+        </div>
+        <!-- Stat 2 -->
+        <div class="px-4 border-l-0 sm:border-l border-white/5">
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-orange tracking-tight mb-2">99+%</p>
+          <p class="text-xs md:text-sm uppercase tracking-widest text-white/70 font-bold">Barang Sampai Aman</p>
+        </div>
+        <!-- Stat 3 -->
+        <div class="px-4 border-t lg:border-t-0 border-white/5 pt-8 lg:pt-0">
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-orange tracking-tight mb-2">1000+</p>
+          <p class="text-xs md:text-sm uppercase tracking-widest text-white/70 font-bold">Importir Kerjasama</p>
+        </div>
+        <!-- Stat 4 -->
+        <div class="px-4 border-t lg:border-t-0 border-white/5 pt-8 lg:pt-0 border-l-0 sm:border-l border-white/5">
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-orange tracking-tight mb-2">247</p>
+          <p class="text-xs md:text-sm uppercase tracking-widest text-white/70 font-bold">Layanan CS Responsive</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES CARDS ─────────────────────────────── -->
+  <section class="section">
+    <div class="shell">
+      <div class="flex items-end justify-between mb-8 fade-up">
+        <h2 class="h-xl balance">Daftar Layanan <span class="text-orange">Import dari China</span></h2>
+        <div class="hidden sm:flex gap-2">
+          <button id="slider-prev" class="w-12 h-12 rounded-full border border-line flex items-center justify-center hover:bg-orange hover:text-white hover:border-orange transition-all text-ink" aria-label="Previous">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button id="slider-next" class="w-12 h-12 rounded-full border border-line flex items-center justify-center hover:bg-orange hover:text-white hover:border-orange transition-all text-ink" aria-label="Next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <service-slider>
+        <div id="service-track" class="flex flex-nowrap gap-6 overflow-x-auto snap-x snap-mandatory pb-8 hide-scrollbar mr-[calc(50%-50vw)] pr-[calc(50vw-50%+1.5rem)]">
+          
+          <!-- Service 1: LCL -->
+          <div class="snap-start shrink-0 w-[85vw] sm:w-[350px] panel lift p-4 pb-8 flex flex-col fade-up d1">
+            <div class="h-48 rounded-xl overflow-hidden mb-5">
+              <picture>
+                <img src="/images/service-sea-lcl.webp" width="400" height="300" loading="lazy" decoding="async" alt="Layanan pengiriman kargo laut LCL" class="w-full h-full object-cover" />
+              </picture>
+            </div>
+            <h3 class="font-display font-bold text-lg px-2 mb-2">Sea Freight LCL</h3>
+            <p class="text-muted text-sm px-2 mb-6 flex-1">Solusi konsolidasi untuk importir dengan volume kecil hingga menengah. Bayar hanya sebesar ruang yang dipakai.</p>
+            <div class="px-2">
+              <a href="/layanan/kargo-laut-lcl" aria-label="Lihat detail layanan Sea Freight LCL" class="w-10 h-10 rounded-full border border-line flex items-center justify-center hover:bg-orange hover:text-white hover:border-orange transition-all">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 2: FCL -->
+          <div class="snap-start shrink-0 w-[85vw] sm:w-[350px] panel lift p-4 pb-8 flex flex-col fade-up d2">
+            <div class="h-48 rounded-xl overflow-hidden mb-5">
+              <picture>
+                <img src="/images/service-sea-fcl.webp" width="400" height="300" loading="lazy" decoding="async" alt="Layanan pengiriman kargo laut FCL" class="w-full h-full object-cover" />
+              </picture>
+            </div>
+            <h3 class="font-display font-bold text-lg px-2 mb-2">Sea Freight FCL</h3>
+            <p class="text-muted text-sm px-2 mb-6 flex-1">Ditujukan untuk importir skala besar yang membutuhkan efisiensi biaya maksimal. Satu kontainer penuh eksklusif.</p>
+            <div class="px-2">
+              <a href="/layanan/kargo-laut-fcl" aria-label="Lihat detail layanan Sea Freight FCL" class="w-10 h-10 rounded-full border border-line flex items-center justify-center hover:bg-orange hover:text-white hover:border-orange transition-all">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 3: Air Freight -->
+          <div class="snap-start shrink-0 w-[85vw] sm:w-[350px] panel lift p-4 pb-8 flex flex-col fade-up d3">
+            <div class="h-48 rounded-xl overflow-hidden mb-5">
+              <picture>
+                <img src="/images/service-air-freight.webp" width="400" height="300" loading="lazy" decoding="async" alt="Layanan pengiriman kargo udara express" class="w-full h-full object-cover" />
+              </picture>
+            </div>
+            <h3 class="font-display font-bold text-lg px-2 mb-2">Air Freight (Express)</h3>
+            <p class="text-muted text-sm px-2 mb-6 flex-1">Solusi kargo udara premium untuk barang urgent atau bernilai tinggi. Proses pengiriman sangat cepat 5-8 hari.</p>
+            <div class="px-2">
+              <a href="/layanan/kargo-udara" aria-label="Lihat detail layanan Air Freight" class="w-10 h-10 rounded-full border border-line flex items-center justify-center hover:bg-orange hover:text-white hover:border-orange transition-all">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 4: Jasa Belanja -->
+          <div class="snap-start shrink-0 w-[85vw] sm:w-[350px] panel lift p-4 pb-8 flex flex-col fade-up d4">
+            <div class="h-48 rounded-xl overflow-hidden mb-5">
+              <picture>
+                <img src="/images/service-jasa-belanja.webp" width="400" height="300" loading="lazy" decoding="async" alt="Jasa titip beli dan pemesanan barang dari e-commerce China" class="w-full h-full object-cover" />
+              </picture>
+            </div>
+            <h3 class="font-display font-bold text-lg px-2 mb-2">Jasa Belanja China</h3>
+            <p class="text-muted text-sm px-2 mb-6 flex-1">Layanan terintegrasi bagi Anda yang kesulitan berbelanja di platform e-commerce Tiongkok. Kami bantu order.</p>
+            <div class="px-2">
+              <a href="/layanan/titip-beli-1688" aria-label="Lihat detail layanan Jasa Belanja China" class="w-10 h-10 rounded-full border border-line flex items-center justify-center hover:bg-orange hover:text-white hover:border-orange transition-all">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 5: Transfer RMB -->
+          <div class="snap-start shrink-0 w-[85vw] sm:w-[350px] panel lift p-4 pb-8 flex flex-col fade-up d1">
+            <div class="h-48 rounded-xl overflow-hidden mb-5">
+              <picture>
+                <img src="/images/payment.webp" width="400" height="300" loading="lazy" decoding="async" alt="Layanan transfer pembayaran RMB ke supplier di China" class="w-full h-full object-cover" />
+              </picture>
+            </div>
+            <h3 class="font-display font-bold text-lg px-2 mb-2">Transfer RMB</h3>
+            <p class="text-muted text-sm px-2 mb-6 flex-1">Fasilitas pembayaran supplier di China dengan kurs kompetitif, proses mudah, cepat, dan dijamin 100% aman.</p>
+            <div class="px-2">
+              <a href="/layanan/transfer-rmb" aria-label="Lihat detail layanan Transfer RMB" class="w-10 h-10 rounded-full border border-line flex items-center justify-center hover:bg-orange hover:text-white hover:border-orange transition-all">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Service 6: Sea Express -->
+          <div class="snap-start shrink-0 w-[85vw] sm:w-[350px] panel lift p-4 pb-8 flex flex-col fade-up d2">
+            <div class="h-48 rounded-xl overflow-hidden mb-5">
+              <picture>
+                <img src="/images/service-sea-express.webp" width="400" height="300" loading="lazy" decoding="async" alt="Layanan pengiriman kargo laut prioritas atau Sea Freight Express" class="w-full h-full object-cover" />
+              </picture>
+            </div>
+            <h3 class="font-display font-bold text-lg px-2 mb-2">Sea Freight Express</h3>
+            <p class="text-muted text-sm px-2 mb-6 flex-1">Jalur khusus laut dengan jadwal keberangkatan kapal yang lebih sering dan prioritas tiba yang lebih cepat.</p>
+            <div class="px-2">
+              <a href="/layanan/kargo-laut-express" aria-label="Lihat detail layanan Sea Freight Express" class="w-10 h-10 rounded-full border border-line flex items-center justify-center hover:bg-orange hover:text-white hover:border-orange transition-all">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </service-slider>
+
+      <!-- Call Now Banner -->
+      <div class="mt-4 lg:mt-8 panel p-6 sm:p-8 bg-orange-light border border-orange/20 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left fade-up">
+        <div class="mb-6 sm:mb-0">
+          <h3 class="font-display font-bold text-xl text-orange-strong mb-1">Punya Pertanyaan?</h3>
+          <p class="text-ink-2 text-sm max-w-md">Konsultan kami siap membantu menghitung estimasi biaya dan merekomendasikan layanan terbaik untuk Anda.</p>
+        </div>
+        <div>
+          <a href={wa} target="_blank" rel="noopener noreferrer" class="btn btn--primary shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Hubungi CS
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    class ServiceSlider extends HTMLElement {
+      connectedCallback() {
+        const track = this.querySelector('#service-track');
+        const prev = document.getElementById('slider-prev');
+        const next = document.getElementById('slider-next');
+        
+        if(track && prev && next) {
+          prev.addEventListener('click', () => {
+            track.scrollBy({ left: -374, behavior: 'smooth' });
+          });
+          next.addEventListener('click', () => {
+            track.scrollBy({ left: 374, behavior: 'smooth' });
+          });
+
+          // Grab to scroll logic
+          let isDown = false;
+          let isDragging = false;
+          let startX;
+          let scrollLeft;
+
+          track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            isDragging = false;
+            track.classList.remove('snap-x', 'snap-mandatory');
+            track.style.cursor = 'grabbing';
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+          });
+
+          track.addEventListener('mouseleave', () => {
+            if (!isDown) return;
+            isDown = false;
+            track.classList.add('snap-x', 'snap-mandatory');
+            track.style.cursor = '';
+          });
+
+          track.addEventListener('mouseup', () => {
+            isDown = false;
+            track.classList.add('snap-x', 'snap-mandatory');
+            track.style.cursor = '';
+          });
+
+          track.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 1.5; // scroll-fast
+            if (Math.abs(walk) > 5) isDragging = true;
+            track.scrollLeft = scrollLeft - walk;
+          });
+
+          // Prevent link clicks if user was just dragging
+          track.addEventListener('click', (e) => {
+            if (isDragging) {
+              e.preventDefault();
+              e.stopPropagation();
+              isDragging = false;
+            }
+          }, true);
+        }
+      }
+    }
+    customElements.define('service-slider', ServiceSlider);
+  </script>
+
+  <!-- ââ PROCESS SECTION ââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+  <section class="section bg-sand border-y border-sand-2">
+    <div class="shell">
+      <div class="mb-12 fade-up">
+        <h2 class="h-xl balance mb-2">Bagaimana Proses <span class="text-orange">Import dari China?</span></h2>
+        <p class="text-muted">Dari konsultasi hingga barang tiba, kami buat semuanya mudah.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6 relative">
+        <div class="hidden lg:block absolute top-12 left-[10%] right-[10%] h-[2px] bg-line border-dashed"></div>
+        {steps.map((s, i) => (
+          <div class="relative bg-white panel p-6 text-center fade-up z-10" class:list={[`d${i+1}`]}>
+            <div class="w-16 h-16 mx-auto bg-orange-light rounded-full flex items-center justify-center mb-5 border-4 border-white shadow-sm text-orange font-display font-bold text-xl">
+              {i + 1}
+            </div>
+            <h3 class="font-display font-bold text-lg mb-2">{s.t}</h3>
+            <p class="text-[0.85rem] text-muted">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── TESTIMONIALS SECTION ────────────────────────────────────────── -->
+  <section class="section bg-sand border-b border-sand-2">
+    <div class="shell">
+      <div class="text-center max-w-2xl mx-auto mb-12 lg:mb-16 fade-up">
+        <p class="kicker justify-center mb-4">Review Pelanggan</p>
+        <h2 class="h-xl balance">Kata Mereka Yang <br/><span class="text-orange">Pelanggan Trans Express</span></h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="testimonial-card fade-up d1">
+          <div>
+            <div class="flex items-center gap-1 text-orange mb-4">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+            <p class="text-ink-2 text-[0.95rem] leading-relaxed mb-6 font-medium">"Sangat terbantu dengan Jasa Belanja 1688 dari Trans Express. Sangat mudah, tim CS-nya ramah, dan estimasi biayanya all-in. Tidak ada biaya siluman saat barang tiba di Jakarta."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-5 border-t border-line">
+            <div class="w-10 h-10 rounded-full bg-orange-light text-orange font-bold font-display flex items-center justify-center text-sm">
+              HN
+            </div>
+            <div>
+              <p class="font-display font-bold text-ink text-sm leading-tight">Hendra Wijaya</p>
+              <p class="text-muted text-xs">Importir Aksesoris HP (Jakarta)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="testimonial-card fade-up d2">
+          <div>
+            <div class="flex items-center gap-1 text-orange mb-4">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+            <p class="text-ink-2 text-[0.95rem] leading-relaxed mb-6 font-medium">"Kami rutin import kargo LCL laut untuk bahan baku kosmetik. Pengiriman dari Guangzhou ke Jakarta rata-rata 3 minggu dan barang selalu sampai dalam keadaan rapi dan aman."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-5 border-t border-line">
+            <div class="w-10 h-10 rounded-full bg-orange-light text-orange font-bold font-display flex items-center justify-center text-sm">
+              SR
+            </div>
+            <div>
+              <p class="font-display font-bold text-ink text-sm leading-tight">Santi Rahmawati</p>
+              <p class="text-muted text-xs">Owner Beauty Brand (Bandung)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="testimonial-card fade-up d3">
+          <div>
+            <div class="flex items-center gap-1 text-orange mb-4">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+            <p class="text-ink-2 text-[0.95rem] leading-relaxed mb-6 font-medium">"Layanan Transfer RMB sangat cepat. Sangat membantu ketika supplier meminta pelunasan segera agar barang bisa langsung dimuat ke kontainer FCL kami. Terpercaya!"</p>
+          </div>
+          <div class="flex items-center gap-3 pt-5 border-t border-line">
+            <div class="w-10 h-10 rounded-full bg-orange-light text-orange font-bold font-display flex items-center justify-center text-sm">
+              BP
+            </div>
+            <div>
+              <p class="font-display font-bold text-ink text-sm leading-tight">Budi Pratama</p>
+              <p class="text-muted text-xs">Distributor Mesin Industri (Surabaya)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ FAQ ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+  <section class="section bg-paper">
+    <div class="shell grid lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20">
+      <div class="fade-up">
+        <p class="kicker mb-4">Pusat Bantuan</p>
+        <h2 class="h-xl balance mb-2">Pertanyaan Seputar <span class="text-orange">Import dari China</span></h2>
+        <p class="text-muted mt-5 text-lg">Tidak menemukan jawaban atas pertanyaan Anda? <br/>Tim Support kami siap membantu 24/7.</p>
+        <a href={wa} class="btn btn--light mt-8">Hubungi Tim Kami</a>
+      </div>
+      <div class="fade-up d1">
+        <Faq items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

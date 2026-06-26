@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { byCategory, categoryLabel, type Category } from '../../data/services';
+
+const groups: { key: Category; blurb: string }[] = [
+  { key: 'pengiriman', blurb: 'Kargo laut dan udara dari China ke Indonesia, door-to-door, dengan kepabeanan yang kami urus.' },
+  { key: 'titip-beli', blurb: 'Belikan barang dari marketplace China — kami atasi bahasa, pembayaran, dan pengiriman.' },
+  { key: 'pembayaran', blurb: 'Bayar supplier di China dan luar negeri dengan kurs bersaing dan bukti transfer yang jelas.' },
+];
+---
+
+<BaseLayout
+  title="Layanan Import & Forwarding China–Indonesia | Trans Express"
+  description="Daftar lengkap layanan Trans Express: kargo laut LCL/FCL & udara, titip beli 1688/Taobao/Alibaba/AliExpress/JD.com, serta transfer RMB & USD."
+  keywords="layanan import china, jasa forwarding china indonesia, titip beli marketplace china, transfer supplier china"
+  path="/layanan"
+>
+  <!-- Hero Section -->
+  <section class="pt-6 md:pt-10 pb-16 bg-paper px-4 md:px-8">
+    <div class="max-w-[1360px] mx-auto text-center fade-up">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange/10 text-orange text-xs md:text-sm font-bold tracking-wider mb-6 uppercase">
+        Layanan Kami
+      </div>
+      <h1 class="font-display font-black leading-[1.05] text-ink text-[clamp(2.5rem,6vw,4.5rem)] tracking-tight mb-6">
+        Satu mitra untuk seluruh<br class="hidden md:block" /> rantai impor Anda.
+      </h1>
+      <p class="lede mt-5 max-w-2xl mx-auto">Pilih layanan sesuai kebutuhan — atau gabungkan beberapa sekaligus. Tim kami akan menyusun jalur paling efisien dari China sampai depan pintu Anda.</p>
+    </div>
+  </section>
+
+  {groups.map((g, gi) => (
+    <section class:list={['section-sm', gi % 2 === 1 ? 'bg-sand' : '']}>
+      <div class="shell">
+        <div class="max-w-2xl mb-9">
+          <p class="font-display text-sm font-medium uppercase tracking-[0.16em] text-orange mb-2">{String(gi + 1).padStart(2, '0')} — {categoryLabel[g.key]}</p>
+          <p class="text-ink-2 text-lg">{g.blurb}</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {byCategory(g.key).map((s) => (
+            <a href={`/layanan/${s.slug}`} class="panel bg-paper p-8 rounded-[24px] shadow-sm lift group flex flex-col fade-up border-none border border-sand-2">
+              <span class="grid place-items-center w-14 h-14 rounded-xl bg-sand-2 text-orange mb-6 group-hover:bg-orange group-hover:text-white transition-colors">
+                {s.imgIcon ? (
+                  <img src={s.imgIcon} alt={`Ikon layanan ${s.name}`} class="w-10 h-10 object-contain drop-shadow-sm group-hover:brightness-0 group-hover:invert transition-all" loading="lazy" width="40" height="40" />
+                ) : (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon}></svg>
+                )}
+              </span>
+              <h2 class="font-display font-bold text-xl text-ink group-hover:text-orange transition-colors mb-2">{s.name}</h2>
+              <p class="text-muted text-[0.95rem] leading-relaxed flex-1">{s.tagline}</p>
+              <span class="inline-flex items-center gap-1.5 text-[0.9rem] font-display font-bold text-orange mt-6">
+                Selengkapnya
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaBand />
+</BaseLayout>

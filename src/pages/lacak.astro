@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+
+const num = siteConfig.contact.whatsapp.primary.number;
+const stages = [
+  { t: 'Masuk gudang China', d: 'Barang diterima & diukur di gudang konsolidasi kami.' },
+  { t: 'Berangkat', d: 'Dimuat dan diberangkatkan via laut atau udara.' },
+  { t: 'Tiba di Indonesia', d: 'Sampai di pelabuhan/bandara tujuan.' },
+  { t: 'Proses Clearance', d: 'Proses clearance diselesaikan oleh tim kami.' },
+  { t: 'Diantar', d: 'Dikirim ke alamat tujuan Anda.' },
+];
+---
+
+<BaseLayout
+  title="Lacak Kiriman Import China | Trans Express"
+  description="Lacak status kiriman import Anda dari China ke Indonesia. Masukkan nomor resi Trans Express dan tim kami bantu cek posisinya."
+  keywords="lacak kiriman china, cek resi import china, tracking kargo china indonesia"
+  path="/lacak"
+>
+  <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+  <section class="pt-6 md:pt-10 pb-16 bg-paper px-4 md:px-8">
+    <div class="max-w-[1360px] mx-auto grid lg:grid-cols-[1fr_0.9fr] gap-10 lg:gap-14 items-center">
+      <div class="fade-up text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange/10 text-orange text-xs md:text-sm font-bold tracking-wider mb-6 uppercase">
+          Lacak Kiriman
+        </div>
+        <h1 class="font-display font-black leading-[1.05] text-ink text-[clamp(2.5rem,6vw,4.5rem)] tracking-tight mb-6">Live Tracking <span class="text-orange">Pengiriman</span></h1>
+        <p class="text-muted text-lg font-medium leading-relaxed max-w-xl">Masukkan nomor resi atau marking dari tim kami. Kami akan bantu cek posisi terkini kiriman Anda lewat WhatsApp.</p>
+
+        <form id="lacakForm" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-lg" data-wa={num}>
+          <label for="resi" class="sr-only">Nomor resi atau marking</label>
+          <input id="resi" name="resi" type="text" required placeholder="cth. TE-2406-1234" class="flex-1 bg-sand-2 border-none rounded-xl px-5 py-4 text-ink placeholder:text-muted/70 focus:bg-orange/5 focus:ring-2 focus:ring-orange/50 transition-all shadow-sm" />
+          <button type="submit" class="btn btn--primary btn--lg shadow-xl shadow-orange/30 shrink-0 rounded-xl px-8 group">
+            Lacak
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+        <p class="text-[0.85rem] font-medium text-muted mt-4">Belum punya nomor resi? Resi diberikan setelah barang masuk gudang dan selesai diukur.</p>
+
+        <!-- Result Block (Mock API Not Integrated) -->
+        <div id="lacakResult" class="hidden mt-6 p-5 md:p-6 rounded-2xl bg-red-50 border border-red-100/50 text-left fade-up d1">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0 text-red-500">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-red-900 mb-1 text-lg">Data Resi Belum Ditemukan</h3>
+              <p class="text-[0.95rem] text-red-800/80 leading-relaxed mb-4">
+                Data nomor resi atau marking yang Anda masukkan belum ditemukan dalam sistem kami. Silakan hubungi Customer Service kami untuk mengecek status kiriman Anda.
+              </p>
+              <button type="button" id="btnHubungiCS" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium text-[0.85rem] py-2 px-5 rounded-full transition-colors">
+                Hubungi CS via WhatsApp
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative fade-up d1">
+        <div class="rounded-[24px] overflow-hidden aspect-[4/3] md:aspect-auto md:h-[450px] lg:h-[550px] bg-sand border border-line shadow-2xl shadow-ink/5">
+          <picture>
+            <img src="/images/service-sea-freight.webp" alt="Kapal kargo laut untuk pelacakan kiriman import" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" fetchpriority="high" decoding="async" width="800" height="600" />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- journey -->
+  <section class="section bg-sand">
+    <div class="shell">
+      <div class="max-w-2xl mb-12 fade-up">
+        <p class="kicker mb-4">Perjalanan kiriman</p>
+        <h2 class="h-xl balance">Alur Proses <span class="text-orange">Import dari China</span></h2>
+      </div>
+      <ol class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        {stages.map((s, i) => (
+          <li class="panel bg-paper p-8 rounded-[24px] shadow-sm lift fade-up border-none" class:list={[`d${(i % 4) + 1}`]}>
+            <span class="idx text-4xl block mb-6 text-sand-2">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="font-display font-bold text-xl mb-3 text-ink leading-tight">{s.t}</h3>
+            <p class="text-[0.95rem] text-muted leading-relaxed">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const f = document.getElementById('lacakForm');
+      const res = document.getElementById('lacakResult');
+      const btnWa = document.getElementById('btnHubungiCS');
+      
+      if (!f || !res || !btnWa) return;
+      
+      f.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const resi = (document.getElementById('resi')?.value || '').trim();
+        if (!resi) { f.reportValidity(); return; }
+        
+        // Show result block instead of directly redirecting
+        res.classList.remove('hidden');
+        // Small delay to trigger animation if needed
+        setTimeout(() => res.classList.add('show'), 10);
+      });
+
+      btnWa.addEventListener('click', () => {
+        const num = f.getAttribute('data-wa');
+        const resi = (document.getElementById('resi')?.value || '').trim();
+        const msg = `Halo Trans Express, mohon bantu cek status kiriman saya dengan resi/marking: ${resi}`;
+        window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
+      });
+    })();
+  </script>
+</BaseLayout>

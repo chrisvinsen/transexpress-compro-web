@@ -1,0 +1,87 @@
+# ==========================================
+# TRANS EXPRESS
+# Optimized for Search Engines & AI Crawlers
+# ==========================================
+
+# ------------------------------------------
+# General Web Crawlers (Google, Bing, etc.)
+# ------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# ------------------------------------------
+# Main Search Engine Bots
+# ------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# ------------------------------------------
+# AI Agents & LLM Web Browsers (Allowed)
+# Explicitly allowed for visibility in AI
+# search engines and research platforms
+# ------------------------------------------
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Google Gemini / AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Meta AI / Llama
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+
+# Other AI / Search Engines
+User-agent: YouBot
+Allow: /
+User-agent: Cohere-ai
+Allow: /
+User-agent: Diffbot
+Allow: /
+User-agent: Omgilibot
+Allow: /
+User-agent: Applebot
+Allow: /
+
+# ------------------------------------------
+# Sitemap
+# ------------------------------------------
+Sitemap: https://transexpress.id/sitemap-index.xml

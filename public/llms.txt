@@ -1,0 +1,61 @@
+# Trans Express — Jasa Import China ke Indonesia
+
+> Trans Express adalah perusahaan jasa import dan forwarder China–Indonesia. Kami menangani pembelian (titip beli), pengiriman kargo laut & udara, dan pembayaran ke supplier — dalam satu pintu. Slogan: "Speed You Can Trust".
+
+## Catatan Data
+
+> Angka, kontak, dan detail perusahaan di bawah ini masih placeholder dan akan diperbarui dengan data resmi Trans Express.
+
+## Layanan (URL: /layanan/<slug>)
+
+Pengiriman Kargo:
+- **Kargo Laut LCL** (/layanan/kargo-laut-lcl) — bayar per CBM, estimasi 3–4 minggu, mulai 0,1 CBM.
+- **Kargo Laut FCL** (/layanan/kargo-laut-fcl) — 1 kontainer penuh 20ft/40ft/40HQ, estimasi 3–4 minggu.
+- **Laut Express** (/layanan/kargo-laut-express) — jalur laut prioritas, estimasi 10–15 hari.
+- **Kargo Udara** (/layanan/kargo-udara) — estimasi 7–8 hari, mulai 1 kg.
+
+Titip Beli (marketplace China):
+- **1688** (/layanan/titip-beli-1688) — grosir pabrik.
+- **Taobao** (/layanan/titip-beli-taobao) — eceran & produk unik.
+- **Alibaba** (/layanan/titip-beli-alibaba) — sourcing B2B & OEM/ODM.
+- **AliExpress** (/layanan/titip-beli-aliexpress) — konsolidasi paket hemat ongkir.
+- **JD.com** (/layanan/titip-beli-jdcom) — elektronik original.
+
+Pembayaran:
+- **Transfer RMB** (/layanan/transfer-rmb) — bayar supplier China dalam Yuan.
+- **Transfer USD** (/layanan/transfer-usd) — pembayaran internasional dalam Dolar AS.
+
+## Halaman Lain
+
+- Beranda: /
+- Semua layanan: /layanan
+- Tentang: /tentang
+- Lacak kiriman: /lacak
+- FAQ: /faq
+- Kontak: /kontak
+
+## Cakupan
+
+- Door-to-door ke seluruh Indonesia.
+- Gudang konsolidasi di China: Guangzhou, Yiwu, Shenzhen.
+- Bahasa tim: Indonesia, Mandarin, English.
+
+## Cara Memulai
+
+1. Hubungi via WhatsApp dengan link produk atau detail barang.
+2. Terima estimasi biaya dan jalur kirim yang disarankan.
+3. Pembayaran dalam Rupiah ke rekening Trans Express.
+4. Barang dibeli/dijemput, dikirim, dan kepabeanan diurus.
+5. Diantar sampai alamat tujuan.
+
+## Kontak
+
+- WhatsApp: +62 812-3456-7890 (placeholder — TODO)
+- Email: cs@transexpress.id (placeholder — TODO)
+- Website: https://transexpress.id
+
+## Yang TIDAK Kami Layani
+
+- Barang ilegal (senjata, narkotika, pornografi, satwa/tumbuhan dilindungi).
+- Barang melanggar HAKI (replika merek).
+- Skema "import tanpa pajak" — semua import diproses resmi dengan dokumen pabean lengkap.

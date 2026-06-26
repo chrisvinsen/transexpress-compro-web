@@ -1,0 +1,29 @@
+---
+import { siteConfig } from '../config/site';
+interface Props { title?: string; text?: string; }
+const {
+  title = 'Siap Impor Barang dari China?',
+  text = 'Konsultasikan kebutuhan impor Anda. Dapatkan estimasi biaya yang transparan dan solusi pengiriman yang sesuai.',
+} = Astro.props;
+const wa = `https://wa.me/${siteConfig.contact.whatsapp.primary.number}?text=${encodeURIComponent('Halo Trans Express, saya tertarik menggunakan layanan jasa import untuk bisnis saya. Boleh minta info lebih lanjut?')}`;
+---
+<section class="section">
+  <div class="shell">
+    <!-- Bento style CTA band -->
+    <div class="relative overflow-hidden bg-gradient-to-br from-orange-light to-orange-bright text-ink rounded-[32px] px-8 py-14 md:px-16 md:py-20 border border-orange/10">
+      <div class="relative z-10 grid lg:grid-cols-[1.4fr_auto] gap-10 lg:items-center">
+        <div>
+          <h2 class="h-xl balance leading-tight">{title}</h2>
+          <p class="mt-5 text-ink-2 max-w-xl text-lg">{text}</p>
+        </div>
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-4">
+          <a href={wa} target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg shadow-xl shadow-orange/20">
+            Hubungi via WhatsApp
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/layanan" class="btn btn--light btn--lg border border-orange/20 hover:border-orange/40 bg-white">Lihat Detail Layanan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

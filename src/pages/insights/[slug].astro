@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { insights } from '../../data/insights';
+
+export function getStaticPaths() {
+  return insights.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<BaseLayout 
+  title={`${article.title} | Trans Express Insights`}
+  description={article.excerpt}
+  path={`/insights/${article.slug}`}
+>
+  <article class="bg-paper min-h-screen pt-10 md:pt-20 pb-20">
+    <div class="shell max-w-3xl mx-auto">
+      <!-- Article Header -->
+      <header class="mb-10 fade-up text-center">
+        <div class="inline-flex items-center gap-2 mb-6">
+          <span class="px-3 py-1 rounded-full bg-orange/10 text-orange text-xs font-bold tracking-wider uppercase">
+            {article.category}
+          </span>
+          <span class="text-muted text-[0.85rem] font-medium">
+            {new Date(article.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </span>
+        </div>
+        <h1 class="font-display font-black text-ink text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] tracking-tight mb-8">
+          {article.title}
+        </h1>
+      </header>
+
+      <!-- Featured Image -->
+      <figure class="mb-12 rounded-[24px] overflow-hidden aspect-[16/9] md:aspect-[21/9] bg-sand border border-line shadow-sm fade-up d1">
+        <img 
+          src={article.image} 
+          alt={`Gambar utama artikel ${article.title}`} 
+          class="w-full h-full object-cover" 
+          fetchpriority="high"
+          decoding="async"
+          width="800"
+          height="450"
+        />
+      </figure>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg prose-headings:font-display prose-headings:font-bold prose-a:text-orange hover:prose-a:text-orange-bright prose-img:rounded-xl mx-auto text-ink-2 fade-up d2">
+        <div set:html={article.content} />
+      </div>
+
+      <!-- Back Link -->
+      <div class="mt-16 pt-8 border-t border-line fade-up d3">
+        <a href="/insights" class="inline-flex items-center gap-2 font-medium text-ink-2 hover:text-orange transition-colors">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Kembali ke Insights
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <CtaBand 
+    title="Butuh Bantuan Import?" 
+    text="Konsultasikan kebutuhan logistik Anda dengan tim kami untuk mendapatkan solusi pengiriman terbaik." 
+  />
+</BaseLayout>
+
+<style is:global>
+  /* Basic styling for the dummy HTML content */
+  .prose h2 {
+    font-size: 1.75rem;
+    color: var(--ink);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .prose p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+</style>

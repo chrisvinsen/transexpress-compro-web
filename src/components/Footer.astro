@@ -1,0 +1,99 @@
+---
+import { siteConfig } from '../config/site';
+import { byCategory, categoryLabel, type Category } from '../data/services';
+
+const wa = `https://wa.me/${siteConfig.contact.whatsapp.primary.number}?text=${encodeURIComponent('Halo Trans Express, saya ingin bertanya.')}`;
+const groups: Category[] = ['pengiriman', 'titip-beli', 'pembayaran'];
+const company = [
+  { href: '/tentang', label: 'Tentang Kami' },
+  { href: '/layanan', label: 'Semua Layanan' },
+  { href: '/lacak', label: 'Lacak Kiriman' },
+  { href: '/insights', label: 'Insights' },
+  { href: '/kontak', label: 'Kontak' },
+];
+const year = new Date().getFullYear();
+
+const social = [
+  { href: siteConfig.social.instagram, label: 'Instagram', d: 'M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.06 15.58 2.05 15.2 2.05 12s.01-3.58.07-4.85C2.27 3.92 3.78 2.38 7.04 2.23 8.31 2.18 8.69 2.2 12 2.2zm0 3.65A6.15 6.15 0 1 0 12 18.15 6.15 6.15 0 0 0 12 5.85zm0 10.15A4 4 0 1 1 12 8a4 4 0 0 1 0 8zm6.4-10.4a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z' },
+];
+---
+
+<footer class="bg-ink text-white/75 relative overflow-hidden">
+  <span class="orbit" style="width:520px;height:520px;top:-220px;right:-160px;opacity:.5;" aria-hidden="true"></span>
+
+  <div class="shell relative section-sm">
+    <!-- Top: wordmark + CTA -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 pb-12 border-b border-white/12">
+      <div class="max-w-md">
+        <a href="/" class="inline-block" aria-label={`${siteConfig.name} — Beranda`}>
+          <img src="/logo-transexpress-transparent.png" alt={`Logo ${siteConfig.name}`} class="h-10 md:h-12 w-auto brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" loading="lazy" decoding="async" width="200" height="48" />
+        </a>
+        <p class="mt-4 text-[0.95rem] leading-relaxed text-white/65">
+          Jasa import China ke Indonesia — pembelian, pengiriman laut & udara, hingga kepabeanan. Diurus dalam satu pintu.
+        </p>
+        <p class="mt-3 font-display text-sm tracking-[0.18em] uppercase text-orange-bright">Speed You Can Trust</p>
+      </div>
+      <a href={wa} target="_blank" rel="noopener noreferrer" class="btn btn--ondark shrink-0">
+        Mulai Konsultasi
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- Columns -->
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-9 py-12">
+      {groups.map((g) => (
+        <nav aria-label={categoryLabel[g]}>
+          <p class="font-display font-medium text-white text-sm mb-4">{categoryLabel[g]}</p>
+          <ul class="space-y-2.5">
+            {byCategory(g).map((s) => (
+              <li><a href={`/layanan/${s.slug}`} class="text-[0.88rem] text-white/65 hover:text-orange-bright transition-colors">{s.name}</a></li>
+            ))}
+          </ul>
+        </nav>
+      ))}
+      <nav aria-label="Perusahaan">
+        <p class="font-display font-medium text-white text-sm mb-4">Perusahaan</p>
+        <ul class="space-y-2.5">
+          {company.map((l) => (
+            <li><a href={l.href} class="text-[0.88rem] text-white/65 hover:text-orange-bright transition-colors">{l.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <div class="col-span-2 md:col-span-1">
+        <p class="font-display font-medium text-white text-sm mb-4">Hubungi</p>
+        <ul class="space-y-3 text-[0.88rem] text-white/65">
+          <li>
+            <a href={wa} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-orange-bright transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              <span>{siteConfig.contact.whatsapp.primary.display}</span>
+            </a>
+          </li>
+          <!--email_off-->
+          <li>
+            <a href={`mailto:${siteConfig.contact.email.cs}`} class="flex items-center gap-2 hover:text-orange-bright transition-colors break-all">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              <span>{siteConfig.contact.email.cs}</span>
+            </a>
+          </li>
+          <!--/email_off-->
+          <li class="flex items-start gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-[2px]" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Sen–Jum {siteConfig.contact.hours.weekday}</span>
+          </li>
+        </ul>
+        <div class="flex gap-2.5 mt-5">
+          {social.map((s) => (
+            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} class="grid place-items-center w-9 h-9 rounded-full border border-white/15 text-white/70 hover:text-ink hover:bg-orange-bright hover:border-orange-bright transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={s.d}/></svg>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-7 border-t border-white/12 text-[0.8rem] text-white/60">
+      <p>© {year} {siteConfig.name}. Hak cipta dilindungi.</p>
+      <p>Jasa import & forwarding China–Indonesia</p>
+    </div>
+  </div>
+</footer>

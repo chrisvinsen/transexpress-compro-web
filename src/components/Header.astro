@@ -1,0 +1,137 @@
+---
+import { siteConfig } from '../config/site';
+import { services, byCategory, categoryLabel, type Category } from '../data/services';
+
+const wa = `https://wa.me/${siteConfig.contact.whatsapp.primary.number}?text=${encodeURIComponent('Halo Trans Express, saya ingin konsultasi import dari China.')}`;
+
+const groups: Category[] = ['pengiriman', 'titip-beli', 'pembayaran'];
+const links = [
+  { href: '/tentang', label: 'Tentang' },
+  { href: '/lacak', label: 'Lacak' },
+  { href: '/insights', label: 'Insights' },
+  { href: '/kontak', label: 'Kontak' },
+];
+---
+
+<header id="hdr" class="fixed top-0 inset-x-0 z-[100] bg-paper border-b border-line transition-shadow duration-300">
+  <div class="shell flex items-center justify-between h-[68px] md:h-[76px] gap-4">
+    <!-- Logo -->
+    <a href="/" class="flex items-center shrink-0" aria-label={`${siteConfig.name} — Beranda`}>
+      <img src="/logo-transexpress-transparent.png" alt={`Logo ${siteConfig.name}`} class="h-10 md:h-12 w-auto" fetchpriority="high" decoding="async" width="200" height="48" />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-1" aria-label="Navigasi utama">
+      <div class="group relative">
+        <button class="flex items-center gap-1.5 px-3.5 py-2 text-[0.95rem] font-medium text-ink-2 hover:text-orange transition-colors" aria-haspopup="true" aria-expanded="false">
+          Layanan
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" class="transition-transform duration-200 group-hover:rotate-180"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <!-- Mega panel -->
+        <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-200 absolute left-1/2 -translate-x-1/2 top-full pt-3">
+          <div class="w-[min(92vw,840px)] bg-paper border border-line rounded-[24px] shadow-[0_30px_70px_-25px_rgba(17,24,39,0.15)] p-6 grid grid-cols-3 gap-6">
+            {groups.map((g) => (
+              <div>
+                <p class="kicker mb-4">{categoryLabel[g]}</p>
+                <ul class="space-y-1">
+                  {byCategory(g).map((s) => (
+                    <li>
+                      <a href={`/layanan/${s.slug}`} class="block rounded px-3 py-2 -mx-3 hover:bg-sand transition-colors">
+                        <span class="block font-display font-medium text-ink text-[0.92rem]">{s.name}</span>
+                        <span class="block text-[0.78rem] text-muted leading-snug">{s.tagline}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {links.map((l) => (
+        <a href={l.href} class="px-3.5 py-2 text-[0.95rem] font-medium text-ink-2 hover:text-orange transition-colors">{l.label}</a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2.5">
+      <a href={wa} target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex btn btn--primary !py-2.5 !px-4 !text-sm">
+        Konsultasi Gratis
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button id="navToggle" class="lg:hidden grid place-items-center w-10 h-10 -mr-1 text-ink" aria-label="Buka menu" aria-expanded="false" aria-controls="mobilePanel">
+        <svg id="navOpen" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg id="navClose" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile panel -->
+  <div id="mobilePanel" class="lg:hidden hidden border-t border-line bg-paper max-h-[calc(100dvh-68px)] overflow-y-auto animate-slide-down">
+    <div class="shell py-6">
+      {groups.map((g) => (
+        <div class="mb-6">
+          <p class="kicker mb-3 px-2">{categoryLabel[g]}</p>
+          <ul class="space-y-1.5">
+            {byCategory(g).map((s) => (
+              <li>
+                <a href={`/layanan/${s.slug}`} class="flex items-center justify-between p-3 rounded-xl hover:bg-orange/5 active:bg-orange/10 text-ink-2 hover:text-orange transition-all duration-200">
+                  <span class="font-semibold text-[0.95rem]">{s.name}</span>
+                  <span class="text-[0.75rem] font-bold uppercase tracking-wider text-orange bg-orange/10 px-2.5 py-0.5 rounded-full">{s.group}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <hr class="border-line my-5" />
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        {links.map((l) => (
+          <a href={l.href} class="flex items-center justify-center p-3 rounded-xl bg-sand border border-line text-ink-2 hover:text-orange hover:border-orange/50 transition-all font-semibold text-center text-sm">{l.label}</a>
+        ))}
+      </div>
+      <a href={wa} target="_blank" rel="noopener noreferrer" class="btn btn--primary w-full">Konsultasi Gratis</a>
+    </div>
+  </div>
+</header>
+<div class="h-[68px] md:h-[76px]" aria-hidden="true"></div>
+
+<script is:inline>
+  (() => {
+    const hdr = document.getElementById('hdr');
+    const onScroll = () => hdr && hdr.classList.toggle('shadow-[0_8px_30px_-18px_rgba(28,28,28,.4)]', window.scrollY > 8);
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    const btn = document.getElementById('navToggle');
+    const panel = document.getElementById('mobilePanel');
+    const open = document.getElementById('navOpen');
+    const close = document.getElementById('navClose');
+    btn && btn.addEventListener('click', () => {
+      const isOpen = !panel.classList.contains('hidden');
+      panel.classList.toggle('hidden');
+      open.classList.toggle('hidden', !isOpen);
+      close.classList.toggle('hidden', isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Buka menu' : 'Tutup menu');
+    });
+    panel && panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+      panel.classList.add('hidden'); open.classList.remove('hidden'); close.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }));
+  })();
+</script>
+
+<style>
+  .animate-slide-down {
+    animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

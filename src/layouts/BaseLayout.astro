@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../config/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  path?: string; // e.g. "/layanan" — used for canonical + og:url
+  ogImage?: string;
+  preload?: string; // LCP image href to preload (e.g. an .avif)
+  jsonld?: object | object[];
+}
+
+const {
+  title,
+  description = siteConfig.description,
+  keywords,
+  path = '/',
+  ogImage = '/og-image.jpg',
+  preload,
+  jsonld,
+} = Astro.props;
+
+const canonical = new URL(path, siteConfig.url).href;
+const phone = `+${siteConfig.contact.whatsapp.primary.number}`;
+
+const orgSchema = {
+  '@type': 'Organization',
+  '@id': `${siteConfig.url}/#organization`,
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/logo-transexpress-square.png`,
+  description: siteConfig.description,
+  slogan: 'Speed You Can Trust',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: phone,
+    contactType: 'customer service',
+    email: siteConfig.contact.email.cs,
+    areaServed: 'ID',
+    availableLanguage: ['id', 'en', 'zh'],
+  },
+  sameAs: [siteConfig.social.instagram, siteConfig.social.linkedin, siteConfig.social.tiktok],
+};
+
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': `${siteConfig.url}/#website`,
+  url: siteConfig.url,
+  name: siteConfig.name,
+  description: siteConfig.description,
+  inLanguage: 'id-ID',
+  publisher: { '@id': `${siteConfig.url}/#organization` },
+};
+
+const graph: object[] = [orgSchema, websiteSchema];
+if (Array.isArray(jsonld)) graph.push(...jsonld);
+else if (jsonld) graph.push(jsonld);
+const ld = { '@context': 'https://schema.org', '@graph': graph };
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="author" content={siteConfig.name} />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="content-language" content="id-ID" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, siteConfig.url).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, siteConfig.url).href} />
+
+    <meta name="theme-color" content="#FFFFFF" />
+    {preload && <link rel="preload" as="image" type="image/webp" href={preload} fetchpriority="high" />}
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Fonts: Space Grotesk (display) + Plus Jakarta Sans (text), non-blocking -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" />
+    </noscript>
+
+    <!--email_off-->
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <!--/email_off-->
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:bg-ink focus:text-white focus:px-4 focus:py-2 focus:rounded">Lewati ke konten</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppFab />
+
+    <!-- Minimal scroll-reveal (no framework) -->
+    <script is:inline>
+      (() => {
+        const els = document.querySelectorAll('.fade-up');
+        if (!els.length) return;
+        if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          els.forEach((e) => e.classList.add('in'));
+          return;
+        }
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach((e) => io.observe(e));
+      })();
+    </script>
+  </body>
+</html>

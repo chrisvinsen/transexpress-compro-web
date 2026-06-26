@@ -1,0 +1,32 @@
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/home/*
+  Cache-Control: public, max-age=2592000
+
+/jasa-belanja/*
+  Cache-Control: public, max-age=2592000
+
+/jasa-transfer/*
+  Cache-Control: public, max-age=2592000
+
+/*.png
+  Cache-Control: public, max-age=2592000
+
+/*.jpg
+  Cache-Control: public, max-age=2592000
+
+/*.webp
+  Cache-Control: public, max-age=2592000
+
+/*.avif
+  Cache-Control: public, max-age=2592000
+
+/*.ico
+  Cache-Control: public, max-age=86400
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=86400
