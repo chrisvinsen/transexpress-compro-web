@@ -43,121 +43,313 @@ const faqSchema = {
   preload="/images/hero-cargo-ship.webp"
   jsonld={faqSchema}
 >
-  <!-- ââ INSET HERO (New Light Style) âââââââââââââââââââââââââââââââââââ -->
-  <section class="pt-6 md:pt-10 pb-16 bg-paper px-4 md:px-8">
-    <div class="max-w-[1360px] mx-auto">
-      
-      <!-- Top Section: 2 Columns -->
-      <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-16 items-start mb-10 md:mb-16">
-        
-        <!-- Left: Heading -->
-        <div class="fade-up text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange/10 text-orange text-xs md:text-sm font-bold tracking-wider mb-6 uppercase">
-            <span class="w-2 h-2 rounded-full bg-orange animate-pulse"></span>
-            100% Cepat & Aman
-          </div>
-          <h1 class="font-display font-black leading-[1.05] text-ink flex flex-col items-start">
-            <span class="text-[clamp(2.5rem,8vw,5.6rem)] tracking-tight lg:whitespace-nowrap">Forwarder Import</span>
-            <span class="text-[clamp(2.7rem,8.5vw,6rem)] tracking-normal text-orange lg:whitespace-nowrap mt-1">China Indonesia</span>
-          </h1>
-        </div>
-
-        <!-- Right: Text & Buttons -->
-        <div class="fade-up d1 flex flex-col items-start mt-4 lg:mt-[72px]">
-          <p class="text-muted text-base md:text-lg font-medium leading-relaxed max-w-xl mb-6 md:mb-8">
-            Trans Express membantu impor barang dari China ke Indonesia, mulai dari pembelian, pembayaran supplier, pengiriman door-to-door ALL-IN, hingga barang tiba dengan aman di alamat Anda.
-          </p>
-          <div class="flex flex-wrap items-center gap-4">
-            <a href={wa} target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg shadow-xl shadow-orange/30 group">
-              Konsultasi Gratis
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="/layanan" class="inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-line text-ink font-bold hover:border-orange hover:text-orange transition-colors">
-              Layanan Kami
-            </a>
-          </div>
-        </div>
-        
-      </div>
-
-      <!-- Bottom Section: Bento Grid Images -->
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 w-full fade-up d2">
-        <!-- Tall left card (Ship) -->
-        <div class="col-span-1 md:col-span-1 md:row-span-2 relative rounded-[16px] md:rounded-[24px] overflow-hidden aspect-square md:aspect-auto md:h-full group bg-sand border border-line shadow-sm">
-          <img src="/images/hero-cargo-ship.webp" alt="Kapal kargo laut besar berlayar melintasi samudra" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" fetchpriority="high" decoding="async" width="400" height="800" />
-        </div>
-        
-        <!-- Wide top right card (Plane) -->
-        <div class="col-span-1 md:col-span-2 relative rounded-[16px] md:rounded-[24px] overflow-hidden aspect-square md:aspect-auto md:h-[200px] lg:h-[240px] group bg-sand border border-line shadow-sm">
-          <img src="/images/hero-cargo-plane.webp" alt="Pesawat pengiriman kargo udara express internasional" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" fetchpriority="high" decoding="async" width="800" height="400" />
-        </div>
-
-        <!-- Bottom right card 1 (Container) -->
-        <div class="col-span-1 md:col-span-1 relative rounded-[16px] md:rounded-[24px] overflow-hidden aspect-square md:aspect-auto md:h-[140px] lg:h-[180px] group bg-sand border border-line shadow-sm">
-          <img src="/images/hero-containers.webp" alt="Tumpukan kontainer besi untuk pengiriman barang di pelabuhan" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" fetchpriority="high" decoding="async" width="400" height="400" />
-        </div>
-
-        <!-- Bottom right card 2 (Warehouse) -->
-        <div class="col-span-1 md:col-span-1 relative rounded-[16px] md:rounded-[24px] overflow-hidden aspect-square md:aspect-auto md:h-[140px] lg:h-[180px] group bg-sand border border-line shadow-sm">
-          <img src="/images/hero-warehouse.webp" alt="Fasilitas operasional gudang logistik modern" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" fetchpriority="high" decoding="async" width="400" height="400" />
-        </div>
-      </div>
-      
+  <!-- ── NEW HERO SECTION ────────────────────────────────────────────────── -->
+  <section class="relative bg-white pt-6 pb-[250px] sm:pb-24 lg:pt-16 lg:pb-32 overflow-hidden">
+    
+    <!-- Desktop Background -->
+    <div class="hidden lg:block absolute inset-0 z-0 overflow-hidden">
+      <img src="/images/hero-image.webp" alt="Logistics hero image" class="absolute right-0 top-0 h-full w-auto max-w-none object-cover" />
+      <div class="absolute inset-y-0 left-0 w-[55%] xl:w-[45%] bg-white"></div>
+      <div class="absolute inset-y-0 left-[55%] xl:left-[45%] w-[25%] bg-gradient-to-r from-white to-transparent"></div>
     </div>
-  </section>
 
-  <!-- ── LOGO MARQUEE / TICKER ──────────────────────────────────────── -->
-  <section class="py-8 bg-paper border-b border-line-2/40 overflow-hidden">
-    <div class="max-w-[1360px] mx-auto px-4">
-      <p class="text-center font-display text-[0.7rem] font-bold uppercase tracking-[0.2em] text-muted/80 mb-6">Layanan Import Barang dari Marketplace China</p>
-      <div class="marquee-container">
-        <div class="marquee-content">
-          <!-- Taobao -->
-          <img src="/images/logo-taobao.png" alt="Logo Taobao Marketplace" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- 1688 -->
-          <img src="/images/logo-1688.png" alt="Logo 1688 Wholesale" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- Alibaba -->
-          <img src="/images/logo-alibaba.png" alt="Logo Alibaba B2B" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- Tmall -->
-          <div class="flex items-center gap-2 text-ink-2/40 font-display font-extrabold text-lg md:text-xl tracking-tight">
-            <span>Tmall <span class="font-normal text-sm opacity-60">天猫</span></span>
-          </div>
-          <!-- JD -->
-          <img src="/images/logo-jdcom.png" alt="Logo JD.com" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- AliExpress -->
-          <img src="/images/logo-aliexpress.png" alt="Logo AliExpress" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- Made in China -->
-          <div class="flex items-center gap-2 text-ink-2/40 font-display font-extrabold text-md md:text-lg tracking-tight">
-            <span class="border-2 border-ink-2/20 px-1.5 py-0.2 rounded text-[10px] font-bold">MIC</span>
-            <span>Made-in-China</span>
-          </div>
+    <!-- Mobile Background -->
+    <div class="lg:hidden absolute inset-0 z-0 flex flex-col justify-end">
+      <!-- Spacer to push image down -->
+      <div class="w-full grow bg-white"></div>
+      <!-- Portrait image container (Height > Width) -->
+      <div class="relative w-full h-[140vw] max-h-[600px]">
+        <img src="/images/hero-image.webp" alt="Logistics hero image" class="absolute inset-0 w-full h-full object-cover object-right opacity-95" />
+        <!-- Taller, smoother overlay at the top to blend perfectly with the white section above -->
+        <div class="absolute inset-x-0 top-0 h-[200px] bg-gradient-to-b from-white via-white/80 to-transparent"></div>
+      </div>
+    </div>
+
+    <div class="max-w-[1360px] mx-auto px-4 md:px-8 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-10">
+        
+        <!-- Left Content -->
+        <div class="lg:w-[55%] flex flex-col justify-center py-6 lg:py-10 z-20">
           
-          <!-- Duplicate for infinite loop -->
-          <!-- Taobao -->
-          <img src="/images/logo-taobao.png" alt="Logo Taobao Marketplace" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- 1688 -->
-          <img src="/images/logo-1688.png" alt="Logo 1688 Wholesale" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- Alibaba -->
-          <img src="/images/logo-alibaba.png" alt="Logo Alibaba B2B" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- Tmall -->
-          <div class="flex items-center gap-2 text-ink-2/40 font-display font-extrabold text-lg md:text-xl tracking-tight">
-            <span>Tmall <span class="font-normal text-sm opacity-60">天猫</span></span>
+          <!-- Trust badge -->
+          <div class="flex items-center gap-3 mb-6 fade-up">
+            <div class="flex -space-x-2">
+              <img class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" src="https://ui-avatars.com/api/?name=RS&background=random" alt="Avatar" />
+              <img class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" src="https://ui-avatars.com/api/?name=DW&background=random" alt="Avatar" />
+              <img class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" src="https://ui-avatars.com/api/?name=FK&background=random" alt="Avatar" />
+            </div>
+            <div class="flex items-center gap-1.5 text-sm font-medium text-gray-500">
+              <svg class="text-orange w-4 h-4 mb-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <span>Dipercaya 1.000+ Importir di Indonesia</span>
+            </div>
           </div>
-          <!-- JD -->
-          <img src="/images/logo-jdcom.png" alt="Logo JD.com" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- AliExpress -->
-          <img src="/images/logo-aliexpress.png" alt="Logo AliExpress" class="h-6 md:h-8 w-auto object-contain mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity" width="120" height="32" loading="lazy" decoding="async" />
-          <!-- Made in China -->
-          <div class="flex items-center gap-2 text-ink-2/40 font-display font-extrabold text-md md:text-lg tracking-tight">
-            <span class="border-2 border-ink-2/20 px-1.5 py-0.2 rounded text-[10px] font-bold">MIC</span>
-            <span>Made-in-China</span>
+
+          <!-- Heading -->
+          <h1 class="font-display text-[2.4rem] sm:text-[2.8rem] md:text-6xl lg:text-[4rem] font-bold text-gray-900 leading-[1.1] tracking-tight mb-6 fade-up d1 [text-shadow:_0_0_15px_rgba(255,255,255,1),_0_0_30px_rgba(255,255,255,1),_0_0_5px_rgba(255,255,255,1)] relative z-10">
+            Import Dari China <br/>
+            Lebih <span class="text-orange">Cepat.</span><br/>
+            Lebih <span class="text-orange">Aman.</span><br/>
+            Lebih <span class="text-orange">Untung.</span>
+          </h1>
+
+          <!-- Subheading -->
+          <p class="text-gray-700 text-base md:text-lg lg:text-xl max-w-xl mb-8 leading-relaxed fade-up d2 [text-shadow:_0_0_15px_rgba(255,255,255,1),_0_0_30px_rgba(255,255,255,1),_0_0_5px_rgba(255,255,255,1)] relative z-10 font-medium">
+            Bukan sekadar kirim barang, tapi solusi import yang <span class="font-bold text-orange">menguntungkan bisnis Anda.</span> Urusan import, serahkan ke ahlinya.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="grid grid-cols-2 sm:flex sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 fade-up d3 w-full sm:w-auto">
+            <a href={wa} target="_blank" rel="noopener noreferrer" class="w-full flex flex-row items-center justify-center gap-1.5 sm:gap-2 bg-orange text-white px-1.5 sm:px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-[12px] sm:text-base md:text-lg hover:bg-orange-strong transition shadow-lg shadow-orange/30 group text-center leading-tight">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <span class="sm:hidden">Mulai Import</span>
+              <span class="hidden sm:inline">Mulai Import Sekarang</span>
+            </a>
+            <a href="/layanan" class="w-full flex flex-row items-center justify-center gap-1.5 sm:gap-2 bg-white text-gray-800 border-2 border-gray-200 px-1.5 sm:px-6 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-[12px] sm:text-base md:text-lg hover:border-orange hover:text-orange transition text-center leading-tight">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <span class="sm:hidden">Cek Harga</span>
+              <span class="hidden sm:inline">Cek Estimasi & Harga</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Content (Orange Banner) -->
+        <div class="hidden lg:flex lg:w-[45%] relative h-[650px] z-10 shrink-0 justify-end fade-up d2">
+          
+          <!-- Orange Tracker Banner placed as a floating overlay card -->
+          <div class="absolute right-0 lg:-right-6 top-1/2 -translate-y-1/2 w-[210px] sm:w-[240px] md:w-[260px] lg:w-[270px] bg-orange h-auto rounded-l-3xl lg:rounded-3xl flex flex-col py-6 md:py-8 px-5 md:px-6 text-white z-20 shadow-[-10px_0_30px_rgba(243,107,36,0.3)] lg:shadow-[0_20px_50px_rgba(243,107,36,0.5)] border lg:border-white/20 border-r-0 lg:border-r-white/20">
+             
+             <!-- Steps container -->
+             <div class="flex flex-col w-full">
+                 
+                 <!-- Item 1: Dari China -->
+                 <div class="flex items-center gap-3 lg:gap-4">
+                    <div class="w-8 flex justify-center shrink-0">
+                        <svg class="w-7 h-7 lg:w-8 lg:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm lg:text-base font-bold leading-tight">Dari China</span>
+                        <span class="text-[10px] lg:text-[11px] opacity-90 leading-tight mt-1">Supplier / Warehouse</span>
+                    </div>
+                 </div>
+                 
+                 <!-- Arrow 1 -->
+                 <div class="flex justify-center w-full my-1 lg:my-2">
+                    <svg class="w-4 h-6 text-white" viewBox="0 0 16 24" fill="none">
+                      <path d="M8 0v12" stroke="currentColor" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round"/>
+                      <polygon points="2,12 14,12 8,22" fill="currentColor"/>
+                    </svg>
+                 </div>
+
+                 <!-- Item 2: Plane -->
+                 <div class="flex justify-center w-full my-1">
+                    <svg class="w-7 h-7 lg:w-8 lg:h-8" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                    </svg>
+                 </div>
+
+                 <!-- Arrow 2 -->
+                 <div class="flex justify-center w-full my-1 lg:my-2">
+                    <svg class="w-4 h-6 text-white" viewBox="0 0 16 24" fill="none">
+                      <path d="M8 0v12" stroke="currentColor" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round"/>
+                      <polygon points="2,12 14,12 8,22" fill="currentColor"/>
+                    </svg>
+                 </div>
+
+                 <!-- Item 3: Ship / Ke Indonesia -->
+                 <div class="flex items-center gap-3 lg:gap-4">
+                    <div class="w-8 flex justify-center shrink-0">
+                        <svg class="w-7 h-7 lg:w-8 lg:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4 1l-1.4 2.9A3.2 3.2 0 002 12v4c0 .6.4 1 1 1h2m14 0v1a2 2 0 01-2 2h-1m2-3a2 2 0 00-4 0m4 0a2 2 0 01-4 0m-8-3v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1m4 0a2 2 0 00-4 0m4 0a2 2 0 01-4 0m6 0a2 2 0 10-4 0m4 0a2 2 0 11-4 0"/></svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm lg:text-base font-bold leading-tight">Ke Indonesia</span>
+                        <span class="text-[10px] lg:text-[11px] opacity-90 leading-tight mt-1">Pengiriman Sea / Air</span>
+                    </div>
+                 </div>
+
+                 <!-- Arrow 3 -->
+                 <div class="flex justify-center w-full my-1 lg:my-2">
+                    <svg class="w-4 h-6 text-white" viewBox="0 0 16 24" fill="none">
+                      <path d="M8 0v12" stroke="currentColor" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round"/>
+                      <polygon points="2,12 14,12 8,22" fill="currentColor"/>
+                    </svg>
+                 </div>
+
+                 <!-- Item 4: Warehouse / Sampai Gudang Anda -->
+                 <div class="flex items-center gap-3 lg:gap-4">
+                    <div class="w-8 flex justify-center shrink-0">
+                        <svg class="w-7 h-7 lg:w-8 lg:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 21h18M4 21V8l8-5 8 5v13M9 21V12h6v9" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 18h2v3h-2z" /></svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm lg:text-base font-bold leading-tight">Sampai Gudang Anda</span>
+                        <span class="text-[10px] lg:text-[11px] opacity-90 leading-tight mt-1">Door to Door</span>
+                    </div>
+                 </div>
+
+             </div>
+
+             <!-- Bottom Text -->
+             <div class="w-full border-t border-white/30 pt-4 mt-6 text-center">
+                <div class="text-[15px] lg:text-[17px] font-bold leading-tight">Door to Door<br/>All-In Service</div>
+             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ââ BENTO SECTION ââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+  <!-- ── FEATURES & STATS OVERLAY SECTION ────────────────────────────────── -->
+  <section class="relative z-20 pb-16 px-4 md:px-8 bg-paper pt-12 md:pt-0">
+    <div class="max-w-[1360px] mx-auto md:-mt-12 lg:-mt-16 flex flex-col gap-4 md:gap-6">
+      
+      <!-- Features Row -->
+      <div class="bg-white rounded-[20px] md:rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-5 md:p-6 lg:p-8 grid grid-cols-2 lg:flex lg:flex-row gap-5 lg:gap-6 justify-between items-start lg:items-center border border-gray-100 fade-up d2">
+         <!-- Item 1 -->
+         <div class="flex items-start lg:items-center gap-3 lg:gap-4 flex-1">
+            <div class="text-orange shrink-0">
+               <svg class="w-8 h-8 lg:w-11 lg:h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div class="pt-0.5 lg:pt-0">
+               <h3 class="font-bold text-gray-900 text-[13px] lg:text-[15px] lg:mb-1.5 leading-tight">Aman & Terjamin</h3>
+               <p class="hidden lg:block text-[13px] text-gray-500 leading-snug">Packing rapi, standar keamanan tinggi dan barang sampai dengan selamat.</p>
+            </div>
+         </div>
+
+         <!-- Divider -->
+         <div class="hidden lg:block w-[1px] h-14 bg-gray-200/60 shrink-0"></div>
+
+         <!-- Item 2 -->
+         <div class="flex items-start lg:items-center gap-3 lg:gap-4 flex-1">
+            <div class="text-orange shrink-0">
+               <svg class="w-8 h-8 lg:w-11 lg:h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="pt-0.5 lg:pt-0">
+               <h3 class="font-bold text-gray-900 text-[13px] lg:text-[15px] lg:mb-1.5 leading-tight">Cepat & Efisien</h3>
+               <p class="hidden lg:block text-[13px] text-gray-500 leading-snug">Estimasi jelas & real-time update di setiap proses pengiriman.</p>
+            </div>
+         </div>
+
+         <!-- Divider -->
+         <div class="hidden lg:block w-[1px] h-14 bg-gray-200/60 shrink-0"></div>
+
+         <!-- Item 3 -->
+         <div class="flex items-start lg:items-center gap-3 lg:gap-4 flex-1">
+            <div class="text-orange shrink-0">
+               <svg class="w-8 h-8 lg:w-11 lg:h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.393.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+            </div>
+            <div class="pt-0.5 lg:pt-0">
+               <h3 class="font-bold text-gray-900 text-[13px] lg:text-[15px] lg:mb-1.5 leading-tight">Harga All-In & Transparan</h3>
+               <p class="hidden lg:block text-[13px] text-gray-500 leading-snug">Tanpa biaya tersembunyi, semua biaya diinformasikan di awal.</p>
+            </div>
+         </div>
+
+         <!-- Divider -->
+         <div class="hidden lg:block w-[1px] h-14 bg-gray-200/60 shrink-0"></div>
+
+         <!-- Item 4 -->
+         <div class="flex items-start lg:items-center gap-3 lg:gap-4 flex-1">
+            <div class="text-orange shrink-0">
+               <svg class="w-8 h-8 lg:w-11 lg:h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            </div>
+            <div class="pt-0.5 lg:pt-0">
+               <h3 class="font-bold text-gray-900 text-[13px] lg:text-[15px] lg:mb-1.5 leading-tight">Tim Profesional</h3>
+               <p class="hidden lg:block text-[13px] text-gray-500 leading-snug">Berpengalaman, komunikatif, dan siap membantu kapan saja.</p>
+            </div>
+         </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="bg-white rounded-[20px] md:rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-5 md:p-6 lg:p-6 xl:p-8 grid grid-cols-2 lg:flex lg:flex-row gap-5 lg:gap-3 xl:gap-6 justify-between items-start lg:items-center border border-gray-100 fade-up d3 mt-4 lg:mt-6">
+         <!-- Stats 1 -->
+         <div class="flex items-center gap-3 lg:gap-4 lg:w-max col-span-2 lg:col-span-1 border-b border-gray-100 lg:border-none pb-4 lg:pb-0 mb-1 lg:mb-0">
+            <!-- Left: Avatars -->
+            <div class="flex -space-x-3 shrink-0">
+               <img class="w-8 h-8 lg:w-12 lg:h-12 rounded-full border-2 border-white object-cover shadow-sm" src="https://ui-avatars.com/api/?name=RS&background=random" alt="Avatar" />
+               <img class="w-8 h-8 lg:w-12 lg:h-12 rounded-full border-2 border-white object-cover shadow-sm" src="https://ui-avatars.com/api/?name=DW&background=random" alt="Avatar" />
+               <img class="w-8 h-8 lg:w-12 lg:h-12 rounded-full border-2 border-white object-cover shadow-sm" src="https://ui-avatars.com/api/?name=FK&background=random" alt="Avatar" />
+               <img class="w-8 h-8 lg:w-12 lg:h-12 rounded-full border-2 border-white object-cover shadow-sm hidden lg:block" src="https://ui-avatars.com/api/?name=AL&background=random" alt="Avatar" />
+               <img class="w-8 h-8 lg:w-12 lg:h-12 rounded-full border-2 border-white object-cover shadow-sm hidden lg:block" src="https://ui-avatars.com/api/?name=MK&background=random" alt="Avatar" />
+            </div>
+            <!-- Right: Text Info -->
+            <div class="flex flex-col justify-center">
+               <div class="flex items-center text-yellow-400 mb-0.5">
+                  <svg class="w-3 h-3 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="w-3 h-3 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="w-3 h-3 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="w-3 h-3 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="w-3 h-3 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <span class="text-gray-900 font-bold ml-1.5 text-[11px] lg:text-[13px]">5.0</span>
+               </div>
+               <h3 class="font-bold text-gray-900 text-[12px] lg:text-[14px] leading-tight">Rating Customer</h3>
+               <p class="hidden lg:block text-[12px] text-gray-500 leading-tight mt-0.5">(500+ Review)</p>
+            </div>
+         </div>
+
+         <!-- Divider -->
+         <div class="hidden lg:block w-[1px] h-14 bg-gray-200/60 shrink-0"></div>
+
+         <!-- Stats 2 -->
+         <div class="flex items-start lg:items-center gap-3 lg:gap-4 lg:w-max">
+            <div class="text-orange shrink-0">
+               <svg class="w-8 h-8 lg:w-11 lg:h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            </div>
+            <div>
+               <h3 class="font-bold text-gray-900 text-[16px] lg:text-[20px] lg:mb-1 leading-none">10.000+</h3>
+               <p class="text-[12px] lg:text-[14px] text-gray-900 leading-tight">Shipment</p>
+               <p class="hidden lg:block text-[12px] text-gray-500 leading-tight">Berhasil Dikirim</p>
+            </div>
+         </div>
+
+         <!-- Divider -->
+         <div class="hidden lg:block w-[1px] h-14 bg-gray-200/60 shrink-0"></div>
+
+         <!-- Stats 3 -->
+         <div class="flex items-start lg:items-center gap-3 lg:gap-4 lg:w-max">
+            <div class="text-orange shrink-0">
+               <svg class="w-8 h-8 lg:w-11 lg:h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <div>
+               <h3 class="font-bold text-gray-900 text-[16px] lg:text-[20px] lg:mb-1 leading-none">1.000+</h3>
+               <p class="text-[12px] lg:text-[14px] text-gray-900 leading-tight">Importir</p>
+               <p class="hidden lg:block text-[12px] text-gray-500 leading-tight">Percaya Kami</p>
+            </div>
+         </div>
+
+         <!-- Divider -->
+         <div class="hidden lg:block w-[1px] h-14 bg-gray-200/60 shrink-0"></div>
+
+         <!-- Stats 4 -->
+         <div class="flex items-start lg:items-center gap-3 lg:gap-4 lg:w-max">
+            <div class="text-orange shrink-0">
+               <svg class="w-8 h-8 lg:w-11 lg:h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+            </div>
+            <div>
+               <h3 class="font-bold text-gray-900 text-[16px] lg:text-[20px] lg:mb-1 leading-none">3+</h3>
+               <p class="text-[12px] lg:text-[14px] text-gray-900 leading-tight">Gudang di China</p>
+               <p class="hidden lg:block text-[11px] text-gray-500 leading-tight">(GuangZhou, Yiwu & Foshan)</p>
+            </div>
+         </div>
+
+         <!-- Divider -->
+         <div class="hidden lg:block w-[1px] h-14 bg-gray-200/60 shrink-0"></div>
+
+         <!-- Stats 5 -->
+         <div class="flex items-start lg:items-center gap-3 lg:gap-4 lg:w-max">
+            <div class="text-orange shrink-0">
+               <svg class="w-8 h-8 lg:w-11 lg:h-11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <div>
+               <h3 class="font-bold text-gray-900 text-[16px] lg:text-[20px] lg:mb-1 leading-none">1</h3>
+               <p class="text-[12px] lg:text-[14px] text-gray-900 leading-tight">Gudang di Indonesia</p>
+               <p class="hidden lg:block text-[12px] text-gray-500 leading-tight">(Jakarta)</p>
+            </div>
+         </div>
+      </div>
+      
+    </div>
+  </section>
+
+
+  <!-- â”€â”€ BENTO SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
   <section class="section-sm bg-sand">
     <div class="shell">
       <!-- Top Row: Heading + Small Card -->
@@ -210,36 +402,6 @@ const faqSchema = {
           <a href="/layanan" class="text-ink font-bold hover:text-orange transition-colors text-sm uppercase tracking-wider flex items-center gap-2">
             Layanan Kami <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ââ STATS SECTION ââââââââââââââââââââââââââââââââââââââââââââââââââ -->
-  <section class="py-12 md:py-16 bg-ink text-white relative overflow-hidden">
-    <span class="orbit" style="width:360px;height:360px;top:-180px;left:-100px;opacity:.25;" aria-hidden="true"></span>
-    <span class="orbit" style="width:480px;height:480px;bottom:-240px;right:-120px;opacity:.15;" aria-hidden="true"></span>
-    <div class="shell relative z-10">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 text-center divide-y-0 lg:divide-y-0 lg:divide-x border-white/10">
-        <!-- Stat 1 -->
-        <div class="px-4">
-          <p class="font-display font-extrabold text-4xl md:text-5xl text-orange tracking-tight mb-2">10.000+</p>
-          <p class="text-xs md:text-sm uppercase tracking-widest text-white/70 font-bold">Pengiriman Sukses</p>
-        </div>
-        <!-- Stat 2 -->
-        <div class="px-4 border-l-0 sm:border-l border-white/5">
-          <p class="font-display font-extrabold text-4xl md:text-5xl text-orange tracking-tight mb-2">99+%</p>
-          <p class="text-xs md:text-sm uppercase tracking-widest text-white/70 font-bold">Barang Sampai Aman</p>
-        </div>
-        <!-- Stat 3 -->
-        <div class="px-4 border-t lg:border-t-0 border-white/5 pt-8 lg:pt-0">
-          <p class="font-display font-extrabold text-4xl md:text-5xl text-orange tracking-tight mb-2">1000+</p>
-          <p class="text-xs md:text-sm uppercase tracking-widest text-white/70 font-bold">Importir Kerjasama</p>
-        </div>
-        <!-- Stat 4 -->
-        <div class="px-4 border-t lg:border-t-0 border-white/5 pt-8 lg:pt-0 border-l-0 sm:border-l border-white/5">
-          <p class="font-display font-extrabold text-4xl md:text-5xl text-orange tracking-tight mb-2">247</p>
-          <p class="text-xs md:text-sm uppercase tracking-widest text-white/70 font-bold">Layanan CS Responsive</p>
         </div>
       </div>
     </div>

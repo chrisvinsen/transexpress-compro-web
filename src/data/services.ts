@@ -214,7 +214,7 @@ export const services: Service[] = [
     tagline: 'Grosir langsung dari pabrik, tanpa repot Alipay.',
     image: '/images/warehouse-1.webp',
     icon: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
-    imgIcon: '/images/logo-1688.png',
+    imgIcon: '/images/logo-1688.webp',
     intro:
       'Dapatkan harga grosir termurah langsung dari pabrik di 1688. Kami bantu proses belanja, atasi kendala bahasa & pembayaran, hingga pengiriman aman sampai depan pintu Anda.',
     specs: [
@@ -253,7 +253,7 @@ export const services: Service[] = [
     tagline: 'Belanja eceran & produk unik tanpa akun sendiri.',
     image: '/images/warehouse-2.webp',
     icon: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
-    imgIcon: '/images/logo-taobao.png',
+    imgIcon: '/images/logo-taobao.webp',
     intro:
       'Beli jutaan produk eceran unik dari Taobao dengan mudah. Bebas kendala bahasa Mandarin dan tanpa perlu rekening Tiongkok, semua kami yang urus hingga tiba di Indonesia.',
     specs: [
@@ -292,7 +292,7 @@ export const services: Service[] = [
     tagline: 'Sourcing B2B & custom branding (OEM/ODM).',
     image: '/images/warehouse-3.webp',
     icon: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
-    imgIcon: '/images/logo-alibaba.png',
+    imgIcon: '/images/logo-alibaba.webp',
     intro:
       'Pusat supplier dan pabrik global terpercaya. Ingin bangun brand sendiri (OEM) atau impor skala besar? Kami bantu negosiasi, verifikasi, hingga proses import dan kepabeanan.',
     specs: [
@@ -331,7 +331,7 @@ export const services: Service[] = [
     tagline: 'Konsolidasi paket, hemat ongkir, bayar bank lokal.',
     image: '/images/warehouse-4.webp',
     icon: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
-    imgIcon: '/images/logo-aliexpress.png',
+    imgIcon: '/images/logo-aliexpress.webp',
     intro:
       'Hindari ongkir per paket yang mahal dari AliExpress. Belanja dari banyak toko, kami konsolidasikan di gudang China jadi satu paket hemat ke Indonesia. Cukup bayar via bank lokal.',
     specs: [
@@ -370,7 +370,7 @@ export const services: Service[] = [
     tagline: 'Elektronik & gadget 100% original dari JD domestik.',
     image: '/images/warehouse-5.webp',
     icon: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
-    imgIcon: '/images/logo-jdcom.png',
+    imgIcon: '/images/logo-jdcom.webp',
     intro:
       'Pilihan utama anti barang palsu untuk smartphone dan gadget rilis terbaru. Kami bantu belanja di JD.com domestik dengan jaminan keaslian dan pengiriman ekstra aman ke Indonesia.',
     specs: [
