@@ -1,0 +1,250 @@
+---
+import { siteConfig } from '../config/site';
+---
+
+<div id="wa-popup-overlay" class="fixed inset-0 z-[150] bg-ink/60 backdrop-blur-sm flex items-center justify-center transition-all duration-300 opacity-0 pointer-events-none hidden font-sans">
+  <div id="wa-popup-widget" class="w-[420px] max-w-[calc(100vw-2.5rem)] bg-white rounded-[24px] shadow-[0_24px_60px_rgba(0,0,0,0.35),_0_8px_20px_rgba(0,0,0,0.15)] flex-col overflow-hidden transition-all duration-300 scale-95 opacity-0">
+    
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-[#2cd96b] to-[#1f9b5c] p-4 sm:p-5 flex items-center justify-between relative">
+      <div class="flex items-center gap-3.5">
+        <div class="relative">
+          <img src="/logo-transexpress-square.webp" alt="Tim Trans Express" class="w-12 h-12 rounded-full border-2 border-white bg-white object-cover shadow-sm" />
+          <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#25D366] border-2 border-white rounded-full"></span>
+        </div>
+        <div class="text-white">
+          <h3 class="font-bold text-white text-[18px] leading-tight drop-shadow-sm">Tim Trans Express</h3>
+          <p class="text-[12px] text-white/90 flex items-center gap-1 mt-0.5">
+            Sales Assistant &middot; Online Sekarang
+          </p>
+        </div>
+      </div>
+      <button id="wa-popup-close" class="text-white/90 hover:text-white p-1.5 hover:bg-white/10 rounded-full transition-colors self-start -mt-1 -mr-1" aria-label="Tutup">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Chat Area -->
+    <div class="bg-[#e5ddd5]/30 p-5 h-[400px] overflow-y-auto flex flex-col gap-4 relative scroll-smooth" id="wa-chat-container">
+      
+      <!-- Typing indicator -->
+      <div id="wa-typing" class="flex items-center gap-2 max-w-[85%] self-start hidden">
+        <img src="/logo-transexpress-square.webp" alt="Tim Trans Express" class="w-7 h-7 rounded-full self-end border border-white bg-white shadow-sm" />
+        <div class="bg-white px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm flex gap-1 items-center h-[38px]">
+          <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: -0.3s"></div>
+          <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: -0.15s"></div>
+          <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Footer Input -->
+    <div class="p-3 bg-white border-t border-gray-100 hidden shadow-[0_-5px_15px_rgba(0,0,0,0.03)]" id="wa-input-container">
+      <form id="wa-popup-form" class="relative group">
+        <input type="text" id="wa-input" class="w-full bg-gray-50 text-[14px] rounded-full pl-4 pr-12 py-3 focus:outline-none focus:ring-1 focus:ring-[#1f9b5c]/30 focus:bg-white transition-all border border-transparent focus:border-[#1f9b5c]/30 placeholder-gray-400" placeholder="Ketik pesan ke CS..." autocomplete="off" />
+        <button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 w-9 bg-[#25D366] text-white rounded-full flex items-center justify-center hover:bg-[#1ebe5b] transition-colors group-focus-within:bg-[#1ebe5b] shadow-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-ml-0.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+      <div class="text-[10.5px] text-center text-gray-400 mt-2.5 mb-0.5 flex items-center justify-center gap-1 font-medium">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-400"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Pesan akan diteruskan ke WhatsApp secara langsung
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script define:vars={{ waNumber: siteConfig.contact.whatsapp.primary.number }}>
+document.addEventListener('DOMContentLoaded', () => {
+  const SESSION_KEY = 'wa_popup_closed';
+  
+  if (sessionStorage.getItem(SESSION_KEY) === '1') {
+    return;
+  }
+
+  const overlay = document.getElementById('wa-popup-overlay');
+  const popup = document.getElementById('wa-popup-widget');
+  const closeBtn = document.getElementById('wa-popup-close');
+  const chatContainer = document.getElementById('wa-chat-container');
+  const typingIndicator = document.getElementById('wa-typing');
+  const inputContainer = document.getElementById('wa-input-container');
+  const form = document.getElementById('wa-popup-form');
+  const input = document.getElementById('wa-input');
+  
+  let hasTriggered = false;
+
+  const messages = [
+    { time: 1500, text: "Halo! 👋 Saya dari <strong>Tim Trans Express</strong>." },
+    { time: 3800, text: "Saya lihat kamu sedang mencari informasi tentang <strong>jasa import dari China</strong>. Saya siap bantu sekarang! 📦" },
+    { time: 5800, text: "Ada yang ingin kamu tanyakan? Silakan ketik langsung di bawah ya, saya akan balas segera melalui WhatsApp 😊" }
+  ];
+
+  function createMessageBubble(text) {
+    const wrap = document.createElement('div');
+    wrap.className = 'flex items-center gap-2 max-w-[90%] self-start opacity-0 translate-y-4 transition-all duration-300';
+    
+    // Add timestamps to bubbles
+    const now = new Date();
+    const timeStr = String(now.getHours()).padStart(2, '0') + '.' + String(now.getMinutes()).padStart(2, '0');
+
+    wrap.innerHTML = `
+      <img src="/logo-transexpress-square.webp" alt="Tim Trans Express" class="w-7 h-7 rounded-full self-end shrink-0 border border-white bg-white shadow-sm" />
+      <div class="flex flex-col gap-1 items-end">
+        <div class="bg-white px-3.5 py-2.5 rounded-2xl rounded-bl-sm shadow-sm text-[13.5px] text-[#111b21] leading-relaxed relative">
+          ${text}
+        </div>
+        <span class="text-[10px] text-gray-400 font-medium">${timeStr}</span>
+      </div>
+    `;
+    return wrap;
+  }
+
+  function scrollToBottom() {
+    chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+  }
+
+  function showPopup() {
+    if (hasTriggered) return;
+    hasTriggered = true;
+    
+    // Hide the normal WhatsApp FAB to avoid overlap and focus user
+    const waFab = document.getElementById('wafab');
+    if (waFab) {
+       waFab.style.opacity = '0';
+       waFab.style.pointerEvents = 'none';
+    }
+
+    overlay.classList.remove('hidden');
+    // slight delay for transition
+    setTimeout(() => {
+      overlay.classList.remove('opacity-0', 'pointer-events-none');
+      overlay.classList.add('opacity-100', 'pointer-events-auto');
+      
+      popup.classList.remove('opacity-0', 'scale-95');
+      popup.classList.add('opacity-100', 'scale-100');
+      
+      startChatSequence();
+    }, 50);
+  }
+
+  function startChatSequence() {
+    typingIndicator.classList.remove('hidden');
+    chatContainer.appendChild(typingIndicator); // ensure typing is always at bottom
+    
+    messages.forEach((msg, index) => {
+      setTimeout(() => {
+        // hide typing indicator temporarily
+        typingIndicator.classList.add('hidden');
+        
+        // add message bubble
+        const bubble = createMessageBubble(msg.text);
+        chatContainer.insertBefore(bubble, typingIndicator); 
+        
+        // trigger animation for bubble
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            bubble.classList.remove('opacity-0', 'translate-y-4');
+            scrollToBottom();
+          }, 50);
+        });
+
+        // if not last message, show typing indicator again
+        if (index < messages.length - 1) {
+          setTimeout(() => {
+            typingIndicator.classList.remove('hidden');
+            scrollToBottom();
+          }, 400); 
+        } else {
+          // last message shown, show input box
+          setTimeout(() => {
+            inputContainer.classList.remove('hidden');
+            inputContainer.classList.add('block');
+            input.focus();
+            scrollToBottom();
+            
+            // Re-adjust scrolling a bit later to handle any keyboard popups on mobile
+            setTimeout(scrollToBottom, 300);
+          }, 700);
+        }
+      }, msg.time);
+    });
+  }
+
+  function closePopup() {
+    overlay.classList.remove('opacity-100', 'pointer-events-auto');
+    overlay.classList.add('opacity-0', 'pointer-events-none');
+    
+    popup.classList.remove('opacity-100', 'scale-100');
+    popup.classList.add('opacity-0', 'scale-95');
+    
+    // Restore the FAB
+    const waFab = document.getElementById('wafab');
+    if (waFab) {
+       waFab.style.opacity = '1';
+       waFab.style.pointerEvents = 'auto';
+    }
+
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+    }, 300);
+    sessionStorage.setItem(SESSION_KEY, '1');
+  }
+
+  // Event Listeners
+  const scrollTrigger = () => {
+    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+    if (scrollPercent > 0.4) {
+      showPopup();
+      window.removeEventListener('scroll', scrollTrigger);
+    }
+  };
+
+  window.addEventListener('scroll', scrollTrigger, { passive: true });
+  
+  // Timeout fallback (30 seconds)
+  const timeoutId = setTimeout(() => {
+    showPopup();
+    window.removeEventListener('scroll', scrollTrigger);
+  }, 30000);
+
+  // Click outside to close
+  document.addEventListener('click', (e) => {
+    if (hasTriggered && !overlay.classList.contains('hidden') && !popup.contains(e.target)) {
+      closePopup();
+    }
+  });
+  // Prevent closing when clicking inside popup
+  popup.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closePopup();
+  });
+  
+  // Submit logic
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    
+    // Mixpanel tracking
+    if (typeof window.mixpanel !== 'undefined' && window.mixpanel.track) {
+      window.mixpanel.track('Popup Submit', { 
+        source: 'wa_popup',
+        message_length: text.length
+      });
+    }
+    
+    // Open WA
+    const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+    
+    // Close popup
+    closePopup();
+  });
+});
+</script>

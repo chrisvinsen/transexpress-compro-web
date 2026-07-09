@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
+import WhatsAppPopup from '../components/WhatsAppPopup.astro';
 import { siteConfig } from '../config/site';
 import { byCategory, categoryLabel, type Category } from '../data/services';
 
@@ -43,6 +44,7 @@ const faqSchema = {
   preload="/images/hero-cargo-ship.webp"
   jsonld={faqSchema}
 >
+  <WhatsAppPopup />
   <!-- ── NEW HERO SECTION ────────────────────────────────────────────────── -->
   <section class="relative bg-white pt-2 pb-[250px] sm:pb-24 lg:pt-8 lg:pb-16 overflow-hidden">
     
