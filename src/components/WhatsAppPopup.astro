@@ -233,9 +233,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Mixpanel tracking
     if (typeof window.mixpanel !== 'undefined' && window.mixpanel.track) {
-      window.mixpanel.track('Popup Submit', { 
+      window.mixpanel.track('CTA Clicked', { 
+        type: 'WhatsApp Popup',
         source: 'wa_popup',
-        message_length: text.length
+        message_length: text.length,
+        page_path: window.location.pathname
+      });
+      window.mixpanel.track('Form Submitted', {
+        form_name: 'WhatsApp Popup',
+        source: 'wa_popup'
       });
     }
     

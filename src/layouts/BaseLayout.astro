@@ -153,5 +153,147 @@ const ld = { '@context': 'https://schema.org', '@graph': graph };
         els.forEach((e) => io.observe(e));
       })();
     </script>
+    <!-- Analytics and Global Event Tracking -->
+    <script>
+      setTimeout(async () => {
+        const { trackPageView, trackEvent } = await import('../utils/mixpanel');
+
+        // 1. Track Page View
+        trackPageView();
+
+        // 2. Global Click Listeners (WhatsApp, Phone, Email, Outbound Links & Buttons)
+        document.addEventListener('click', (e) => {
+          const target = e.target as HTMLElement | null;
+          if (!target) return;
+
+          const link = target.closest('a');
+          if (link && link.href) {
+            // WhatsApp CTA Click
+            if (link.href.includes('wa.me') || link.href.includes('api.whatsapp.com')) {
+              let source = link.getAttribute('data-wa-source');
+              if (!source) {
+                if (link.closest('nav') || link.closest('header')) source = 'Header Navigation';
+                else if (link.closest('footer')) source = 'Footer';
+                else if (link.closest('#wa-popup-overlay') || link.closest('#wa-popup-widget')) source = 'WhatsApp Popup';
+                else if (link.closest('#wafab') || link.closest('.fixed')) source = 'Floating WhatsApp Button';
+                else source = 'Body Content';
+              }
+
+              const buttonText = link.getAttribute('data-wa-label') || link.innerText.trim() || 'Icon / Image';
+
+              trackEvent('CTA Clicked', {
+                type: 'WhatsApp',
+                source: source,
+                button_text: buttonText,
+                url: link.href,
+                page_path: window.location.pathname
+              });
+            }
+            // Phone / Tel CTA Click
+            else if (link.href.startsWith('tel:')) {
+              trackEvent('CTA Clicked', {
+                type: 'Phone',
+                source: 'Contact Link',
+                button_text: link.innerText.trim() || link.href,
+                url: link.href,
+                page_path: window.location.pathname
+              });
+            }
+            // Email CTA Click
+            else if (link.href.startsWith('mailto:')) {
+              trackEvent('CTA Clicked', {
+                type: 'Email',
+                source: 'Contact Link',
+                button_text: link.innerText.trim() || link.href,
+                url: link.href,
+                page_path: window.location.pathname
+              });
+            }
+            // Outbound Link Click
+            else if (!link.href.startsWith(window.location.origin) && !link.href.startsWith('/') && !link.href.startsWith('#')) {
+              trackEvent('Outbound Link Clicked', {
+                url: link.href,
+                button_text: link.innerText.trim() || 'Link',
+                page_path: window.location.pathname
+              });
+            }
+            // Other Action Links / Buttons
+            else {
+              const text = link.innerText.trim();
+              if (text) {
+                trackEvent('User Actions', {
+                  action_type: 'Link Click',
+                  element: 'a',
+                  text: text,
+                  url: link.href,
+                  page_path: window.location.pathname
+                });
+              }
+            }
+          } else {
+            // Check button click
+            const button = target.closest('button');
+            if (button) {
+              const text = button.innerText.trim() || button.getAttribute('aria-label') || 'Button';
+              trackEvent('User Actions', {
+                action_type: 'Button Click',
+                element: 'button',
+                text: text,
+                page_path: window.location.pathname
+              });
+            }
+          }
+        });
+
+        // 3. Global Form Submissions
+        document.addEventListener('submit', (e) => {
+          const form = e.target as HTMLFormElement | null;
+          if (form) {
+            const formId = form.id || form.getAttribute('name') || 'Unnamed Form';
+            trackEvent('User Actions', {
+              action_type: 'Form Submit',
+              form_id: formId,
+              page_path: window.location.pathname
+            });
+          }
+        });
+
+        // 4. Scroll Depth Tracking
+        let maxScroll = 0;
+        const trackedDepths = new Set();
+
+        window.addEventListener('scroll', () => {
+          const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          if (docHeight > 0) {
+            const scrollPercent = (window.scrollY / docHeight) * 100;
+            if (scrollPercent > maxScroll) maxScroll = scrollPercent;
+
+            [25, 50, 75, 100].forEach((depth) => {
+              if (maxScroll >= depth && !trackedDepths.has(depth)) {
+                trackedDepths.add(depth);
+                trackEvent('Scroll Depth Reached', {
+                  depth_percentage: depth,
+                  page_path: window.location.pathname
+                });
+              }
+            });
+          }
+        }, { passive: true });
+
+        // 5. FAQ Expansion Tracking
+        document.querySelectorAll('details').forEach((detail) => {
+          detail.addEventListener('toggle', (e) => {
+            if ((e.target as HTMLDetailsElement).open) {
+              const summary = detail.querySelector('summary');
+              trackEvent('User Actions', {
+                action_type: 'FAQ Expanded',
+                question: summary ? summary.innerText.trim() : 'Unknown FAQ',
+                page_path: window.location.pathname
+              });
+            }
+          });
+        });
+      }, 500);
+    </script>
   </body>
 </html>

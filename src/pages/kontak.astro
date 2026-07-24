@@ -117,16 +117,32 @@ const channels = [
     </div>
   </section>
 
-  <script is:inline>
-    (() => {
-      const f = document.getElementById('kontakForm');
-      if (!f) return;
+  <script>
+    import { trackEvent, identifyUser, setPeopleProperties } from '../utils/mixpanel';
+
+    const f = document.getElementById('kontakForm') as HTMLFormElement | null;
+    if (f) {
       f.addEventListener('submit', (e) => {
         e.preventDefault();
         const num = f.getAttribute('data-wa');
-        const get = (id) => (document.getElementById(id)?.value || '').trim();
+        const get = (id: string) => ((document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement)?.value || '').trim();
         const nama = get('f-nama'), wa = get('f-wa'), email = get('f-email'), pesan = get('f-pesan');
         if (!nama || !wa || !pesan) { f.reportValidity(); return; }
+
+        if (email || wa) {
+          identifyUser(email || wa);
+          setPeopleProperties({
+            $name: nama,
+            $email: email,
+            $phone: wa,
+          });
+        }
+
+        trackEvent('Form Submitted', {
+          form_name: 'General Contact',
+          page_path: window.location.pathname
+        });
+
         const lines = [
           '*Pesan dari website Trans Express*',
           '———',
@@ -139,6 +155,6 @@ const channels = [
         ].filter(Boolean);
         window.open(`https://wa.me/${num}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
       });
-    })();
+    }
   </script>
 </BaseLayout>
